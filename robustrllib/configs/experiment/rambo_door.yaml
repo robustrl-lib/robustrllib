@@ -1,0 +1,14 @@
+# RAMBO on AdroitHandDoor-v1 (D4RL expert).
+name: rambo_door
+algorithm: robustrllib/configs/algorithm/rambo.yaml
+task: robustrllib/configs/task/door_expert.yaml
+eval: robustrllib/configs/eval/part1_door.yaml
+hparams:
+  adversary_weight: 0.0003
+  rollout_length: 1
+  bc_reg_weight: 1.0
+  target_entropy: -90.0
+  bc_objective: mse
+  divergence_q: 1.0e+8
+  divergence_check_after: 50000
+train: {updates: 2000000}

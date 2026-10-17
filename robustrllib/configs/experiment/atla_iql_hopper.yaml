@@ -1,0 +1,8 @@
+# ATLA-IQL on Hopper-v5 (Minari medium).
+name: atla_iql_hopper
+algorithm: robustrllib/configs/algorithm/atla_iql.yaml
+task: robustrllib/configs/task/hopper_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  robust_every: 20
+train: {updates: 1000000}

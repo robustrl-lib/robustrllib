@@ -1,0 +1,71 @@
+# Part 1 (library-wide grid), AdroitHandDoor-v1: the rungs of the paper's evaluation-grid table,
+# grouped by severity quartile Q1-Q4 (displacement from nominal).
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: gear_0.8
+  axis: gear
+  quartile: 1
+  severity: 0.8
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.8}
+- name: gear_1.2
+  axis: gear
+  quartile: 2
+  severity: 1.2
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 1.2}
+- name: gear_1.4
+  axis: gear
+  quartile: 3
+  severity: 1.4
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 1.4}
+- name: gear_0.6
+  axis: gear
+  quartile: 4
+  severity: 0.6
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.6}
+- name: latch_friction_2
+  axis: latch_friction
+  quartile: 1
+  severity: 2.0
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: dof_frictionloss, index: latch, factor: 2.0}
+- name: latch_friction_3
+  axis: latch_friction
+  quartile: 2
+  severity: 3.0
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: dof_frictionloss, index: latch, factor: 3.0}
+- name: latch_friction_4
+  axis: latch_friction
+  quartile: 3
+  severity: 4.0
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: dof_frictionloss, index: latch, factor: 4.0}
+- name: latch_friction_5
+  axis: latch_friction
+  quartile: 4
+  severity: 5.0
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: dof_frictionloss, index: latch, factor: 5.0}

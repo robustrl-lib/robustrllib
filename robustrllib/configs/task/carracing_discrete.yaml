@@ -1,0 +1,6 @@
+# Driving from pixels, discrete actions (PPO-based methods).
+name: carracing_discrete
+env_id: CarRacing-v2
+env_kwargs: {continuous: false, domain_randomize: false}                     # 5 discrete actions
+observation: {frames: 4}
+score: {min: -30.44, max: 900.0}   # normalization anchors: random policy / solved threshold

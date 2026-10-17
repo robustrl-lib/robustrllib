@@ -1,0 +1,9 @@
+# SynthER on AdroitHandDoor-v1 (D4RL expert).
+name: synther_door
+algorithm: robustrllib/configs/algorithm/synther.yaml
+task: robustrllib/configs/task/door_expert.yaml
+eval: robustrllib/configs/eval/part1_door.yaml
+hparams:
+  beta: 0.5
+  dropout: 0.1
+train: {updates: 1000000}

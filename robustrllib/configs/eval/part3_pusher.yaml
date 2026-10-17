@@ -1,0 +1,72 @@
+# Part 3 (compound shifts), Pusher: the reference system's factor set,
+# Peng et al. (2018), Table I; each channel alone, then all factors jointly (compound). Brackets are
+# sampling supports, redrawn per episode or per step.
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: theta_p
+  shifts:
+  - target: dynamics
+    mode: loguniform
+    params: {param: body_mass, index: all, low: 0.0312, high: 32.0}
+  - target: dynamics
+    mode: loguniform
+    params: {param: body_mass, index: object, low: 0.1143, high: 3.7681}
+  - target: dynamics
+    mode: loguniform
+    params: {param: dof_damping, index: all, low: 0.0179, high: 1788.8544}
+  - target: dynamics
+    mode: loguniform
+    params: {param: actuator_gear, index: all, low: 0.1768, high: 5.6569}
+- name: theta_tau
+  shifts:
+  - target: latency
+    mode: substep
+    params: {lambda_low: 50.0, lambda_high: 400.0}
+- name: theta_o
+  shifts:
+  - target: observation
+    mode: relative
+    params:
+      frac: 0.125
+      ref_std: [0.22528, 0.19179, 0.36004, 0.42382, 0.71866, 0.33709, 0.41662, 0.16076, 0.25745, 0.82609, 0.74802, 0.62501, 0.44512, 0.53496, 0.14197, 0.15213, 0.07694, 0.08553, 0.09131, 0.0, 0.0, 0.0,
+        0.0]
+- name: theta_z
+  shifts:
+  - target: dynamics
+    mode: translate
+    params:
+      param: body_pos_xyz
+      index: goal
+      offset: [0.1768, 0.1768, 0.0]
+- name: compound
+  shifts:
+  - target: dynamics
+    mode: loguniform
+    params: {param: body_mass, index: all, low: 0.0312, high: 32.0}
+  - target: dynamics
+    mode: loguniform
+    params: {param: body_mass, index: object, low: 0.1143, high: 3.7681}
+  - target: dynamics
+    mode: loguniform
+    params: {param: dof_damping, index: all, low: 0.0179, high: 1788.8544}
+  - target: dynamics
+    mode: loguniform
+    params: {param: actuator_gear, index: all, low: 0.1768, high: 5.6569}
+  - target: latency
+    mode: substep
+    params: {lambda_low: 50.0, lambda_high: 400.0}
+  - target: observation
+    mode: relative
+    params:
+      frac: 0.125
+      ref_std: [0.22528, 0.19179, 0.36004, 0.42382, 0.71866, 0.33709, 0.41662, 0.16076, 0.25745, 0.82609, 0.74802, 0.62501, 0.44512, 0.53496, 0.14197, 0.15213, 0.07694, 0.08553, 0.09131, 0.0, 0.0, 0.0,
+        0.0]
+  - target: dynamics
+    mode: translate
+    params:
+      param: body_pos_xyz
+      index: goal
+      offset: [0.1768, 0.1768, 0.0]

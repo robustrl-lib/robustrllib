@@ -1,0 +1,37 @@
+# ATLA-PPO (Zhang et al., ICLR 2021): a PPO policy trained in alternation with a learned
+# observation adversary, a PPO agent that perturbs each observation within an L-inf ball of
+# radius robust_ppo_eps and is rewarded with the protagonist's negative reward.
+# Defaults: the official Hopper configuration; keys follow the official configuration files.
+name: atla
+entry: baselines/atla/train.py
+class: baselines.atla.policy:ATLAPolicy
+checkpoint: last
+hparams:
+  mode: adv_ppo
+  history_length: -1            # feed-forward (MLP) policy and value networks
+  t: 2048                       # rollout steps per iteration (protagonist and adversary each)
+  gamma: 0.99
+  lambda: 0.95
+  ppo_epochs: 10
+  num_minibatches: 32
+  clip_eps: 0.2
+  clip_val_eps: 0.2
+  value_clipping: false
+  val_epochs: 10
+  adam_eps: 1.0e-5
+  anneal_lr: true
+  norm_states: true
+  norm_rewards: returns
+  clip_observations: 10.0
+  clip_rewards: 10.0
+  initial_std: 1.0
+  entropy_coeff: 0.01
+  ppo_lr_adam: 3.0e-4           # policy learning rate
+  val_lr: 2.5e-4                # value learning rate
+  robust_ppo_eps: 0.075         # observation radius on normalised observations
+  adv_ppo_lr_adam: 3.0e-3       # adversary policy learning rate
+  adv_val_lr: 3.0e-5            # adversary value learning rate
+  adv_clip_eps: 0.2
+  adv_entropy_coeff: 0.0
+  adv_policy_steps: 1           # protagonist updates per iteration
+  adv_adversary_steps: 1        # adversary updates per iteration

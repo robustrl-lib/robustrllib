@@ -1,0 +1,6 @@
+# FWM on LunarLanderContinuous-v3 (medium).
+name: fwm_lunarlander
+algorithm: robustrllib/configs/algorithm/fwm.yaml
+task: robustrllib/configs/task/lunarlander_medium.yaml
+eval: robustrllib/configs/eval/part1_lunarlander.yaml
+train: {updates: 1000000}

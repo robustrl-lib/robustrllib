@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+.venv/
+.idea/
+.vscode/
+.DS_Store
+MUJOCO_LOG.TXT
+
+# outputs of training and evaluation
+/runs/
+/datasets/
+/checkpoints/
+/results/
+/logs/
+*.pt
+*.pth
+*.npz
+*.pkl

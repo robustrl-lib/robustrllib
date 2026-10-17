@@ -1,0 +1,10 @@
+# RFQI on HalfCheetah-v5 (Minari medium).
+name: rfqi_halfcheetah
+algorithm: robustrllib/configs/algorithm/rfqi.yaml
+task: robustrllib/configs/task/halfcheetah_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  rho: 0.3
+  actor_lr: 0.0003
+  critic_lr: 0.0008
+train: {updates: 500000}

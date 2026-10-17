@@ -1,0 +1,11 @@
+# RARL-PPO on PointMaze_UMaze-v3: the adversary pushes the particle in the maze plane.
+name: rarl_ppo_pointmaze
+algorithm: robustrllib/configs/algorithm/rarl_ppo.yaml
+task: robustrllib/configs/task/pointmaze_umaze.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_umaze.yaml
+hparams:
+  adversary: {kind: body_force, bodies: [particle], axes: [x, y], force: 10.0}
+  update_ratio: [2, 1]
+  warmup: 50000
+  zero_force_prob: 0.25
+train: {steps: 2000000}

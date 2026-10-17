@@ -1,0 +1,6 @@
+# SAC on HalfCheetah-v5 (Part 1).
+name: sac_halfcheetah
+algorithm: robustrllib/configs/algorithm/sac.yaml
+task: robustrllib/configs/task/halfcheetah.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {steps: 1000000}

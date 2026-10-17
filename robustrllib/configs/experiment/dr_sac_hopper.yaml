@@ -1,0 +1,11 @@
+# DR-SAC on Hopper-v5 (Part 1): gravity, morphology and gear each drawn from U(0.9, 1.1) per episode.
+name: dr_sac_hopper
+algorithm: robustrllib/configs/algorithm/dr_sac.yaml
+task: robustrllib/configs/task/hopper.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  randomize:
+  - {target: dynamics, mode: uniform, params: {param: gravity, low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: all, low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: actuator_gear, index: all, low: 0.9, high: 1.1}}
+train: {steps: 1000000}

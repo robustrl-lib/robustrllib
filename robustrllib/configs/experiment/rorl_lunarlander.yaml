@@ -1,0 +1,16 @@
+# RORL on LunarLanderContinuous-v3 (medium).
+name: rorl_lunarlander
+algorithm: robustrllib/configs/algorithm/rorl.yaml
+task: robustrllib/configs/task/lunarlander_medium.yaml
+eval: robustrllib/configs/eval/part1_lunarlander.yaml
+hparams:
+  num_samples: 20
+  policy_smooth_eps: 0.005
+  policy_smooth_reg: 0.1
+  q_smooth_eps: 0.005
+  q_ood_eps: 0.01
+  q_ood_reg: 0.5
+  q_ood_uncertainty_reg: 0.0
+  q_ood_uncertainty_reg_min: 0.0
+  q_ood_uncertainty_decay: 0.0
+train: {updates: 1000000}

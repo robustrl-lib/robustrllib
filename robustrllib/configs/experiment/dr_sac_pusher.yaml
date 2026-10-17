@@ -1,0 +1,15 @@
+# DR-SAC on Pusher (Part 3 compound profile): gear, link masses, joint damping and the three
+# arm-link offsets each drawn from U(0.8, 1.2) per episode.
+name: dr_sac_pusher
+algorithm: robustrllib/configs/algorithm/dr_sac.yaml
+task: robustrllib/configs/task/pusher.yaml
+eval: robustrllib/configs/eval/part3_pusher.yaml
+hparams:
+  randomize:
+  - {target: dynamics, mode: uniform, params: {param: actuator_gear, index: all, low: 0.8, high: 1.2}}
+  - {target: dynamics, mode: uniform, params: {param: body_mass, index: all, low: 0.8, high: 1.2}}
+  - {target: dynamics, mode: uniform, params: {param: dof_damping, index: all, low: 0.8, high: 1.2}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: r_shoulder_lift_link, low: 0.8, high: 1.2}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: r_elbow_flex_link, low: 0.8, high: 1.2}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: r_wrist_flex_link, low: 0.8, high: 1.2}}
+train: {steps: 1000000}

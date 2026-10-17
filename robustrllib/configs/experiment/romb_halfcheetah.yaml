@@ -1,0 +1,6 @@
+# ROMB on HalfCheetah-v5 (Minari medium).
+name: romb_halfcheetah
+algorithm: robustrllib/configs/algorithm/romb.yaml
+task: robustrllib/configs/task/halfcheetah_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {updates: 1000000}

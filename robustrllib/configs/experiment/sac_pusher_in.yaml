@@ -1,0 +1,21 @@
+# SAC (in) on Pusher (Part 3): SAC trained inside an in-range deployment profile
+# (physical redraws, gear drift, latency, actuator and sensor noise), scored on the same grid.
+name: sac_pusher_in
+algorithm: robustrllib/configs/algorithm/sac.yaml
+task: robustrllib/configs/task/pusher.yaml
+eval: robustrllib/configs/eval/part3_pusher.yaml
+hparams: {learning_starts: 10000}
+train:
+  steps: 1000000
+  shifts:
+  - {target: dynamics, mode: loguniform, params: {param: body_mass, index: all, low: 0.8, high: 1.2}}
+  - {target: dynamics, mode: loguniform, params: {param: body_pos_xyz, index: r_shoulder_lift_link, low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: loguniform, params: {param: body_pos_xyz, index: r_elbow_flex_link, low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: loguniform, params: {param: body_pos_xyz, index: r_wrist_flex_link, low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: loguniform, params: {param: dof_damping, index: all, low: 0.8, high: 1.2}}
+  - {target: dynamics, mode: scale, params: {param: actuator_gear, index: all, factor: 1.0},
+     schedule: {type: sine, start: 0.9, end: 1.1, period: 25}}
+  - {target: latency, mode: buffer, params: {low: 0, high: 1}}
+  - {target: action, mode: gauss, params: {sigma: 0.02}}
+  - {target: observation, mode: bias, params: {low: -0.02, high: 0.02}}
+  - {target: observation, mode: relative, params: {frac: 0.05}}

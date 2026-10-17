@@ -1,0 +1,27 @@
+diff --git a/sim/assets/robot_models/arm/dual_yam/dual_yam_bimanual.xml b/sim/assets/robot_models/arm/dual_yam/dual_yam_bimanual.xml
+--- a/sim/assets/robot_models/arm/dual_yam/dual_yam_bimanual.xml
++++ b/sim/assets/robot_models/arm/dual_yam/dual_yam_bimanual.xml
+@@ -20,7 +20,7 @@
+       crank_4310 -> ../../gripper/crank_4310/assets/
+   -->
+ 
+-  <compiler angle="radian"/>
++  <compiler autolimits="true" angle="radian"/>
+ 
+   <!-- ============================================================ -->
+   <!-- Assets: shared meshes for both arms + gripper                -->
+diff --git a/sim/check_in_sim.py b/sim/check_in_sim.py
+--- a/sim/check_in_sim.py
++++ b/sim/check_in_sim.py
+@@ -224,7 +224,10 @@ class _VideoSink:
+             return
+         self._closed = True
+         self.writer.close()
+-        self.renderer.close()
++        # mujoco.Renderer has no close() before MuJoCo 3.
++        close = getattr(self.renderer, "close", None)
++        if close is not None:
++            close()
+         print(f"Wrote {self.out_path}  frames={self.frames}  fps={self.fps}")
+ 
+ 

@@ -1,0 +1,6 @@
+# SAC on DoorCausal (Part 2, semantic channel): trained on the hhl binding, evaluated on hhl and hhr.
+name: sac_doorcausal
+algorithm: robustrllib/configs/algorithm/sac.yaml
+task: robustrllib/configs/task/doorcausal.yaml
+eval: robustrllib/configs/eval/part2_doorcausal.yaml
+train: {steps: 1000000}

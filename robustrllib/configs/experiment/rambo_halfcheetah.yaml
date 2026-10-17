@@ -1,0 +1,10 @@
+# RAMBO on HalfCheetah-v5 (Minari medium).
+name: rambo_halfcheetah
+algorithm: robustrllib/configs/algorithm/rambo.yaml
+task: robustrllib/configs/task/halfcheetah_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  adversary_weight: 0.0003
+  rollout_length: 5
+  bc_reg_weight: 0.0
+train: {updates: 2000000}

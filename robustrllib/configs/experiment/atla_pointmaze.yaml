@@ -1,0 +1,14 @@
+# ATLA-PPO on PointMaze_UMaze-v3.
+name: atla_pointmaze
+algorithm: robustrllib/configs/algorithm/atla.yaml
+task: robustrllib/configs/task/pointmaze_umaze.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_umaze.yaml
+hparams:
+  robust_ppo_eps: 0.075
+  ppo_lr_adam: 3.0e-4
+  val_lr: 2.5e-4
+  adv_ppo_lr_adam: 3.0e-3
+  adv_val_lr: 3.0e-5
+  adv_adversary_steps: 1
+  initial_std: 1.0
+train: {steps: 4999168}   # 2441 iterations x 2048 steps

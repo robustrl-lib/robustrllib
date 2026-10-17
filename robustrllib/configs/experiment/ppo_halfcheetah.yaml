@@ -1,0 +1,7 @@
+# PPO on HalfCheetah-v5 (Part 1).
+name: ppo_halfcheetah
+algorithm: robustrllib/configs/algorithm/ppo.yaml
+task: robustrllib/configs/task/halfcheetah.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams: {normalize: true}
+train: {steps: 2000000}

@@ -1,0 +1,25 @@
+# DR-SAC on CarRacing-v2 (Part 1): road friction, car morphology and engine power each drawn
+# from U(0.9, 1.1) per episode; 4 stacked grayscale frames, continuous actions, gSDE exploration.
+name: dr_sac_carracing
+algorithm: robustrllib/configs/algorithm/dr_sac.yaml
+task: robustrllib/configs/task/carracing.yaml
+eval: robustrllib/configs/eval/part1_carracing.yaml
+hparams:
+  learning_rate: 1.0e-4
+  learning_rate_end: 3.0e-5     # linear decay over training
+  buffer_size: 500000
+  optimize_memory_usage: true
+  train_freq: 8
+  gradient_steps: 8
+  n_envs: 2
+  use_sde: true
+  sde_sample_freq: 8
+  use_sde_at_warmup: true
+  policy_kwargs: {log_std_init: -3}
+  target_entropy: -2.0
+  randomize: []
+  resample:
+    friction_scale: [0.9, 1.1]
+    morphology_scale: [0.9, 1.1]
+    engine_power_scale: [0.9, 1.1]
+train: {steps: 1000000}

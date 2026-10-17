@@ -1,0 +1,10 @@
+# RFQI on Walker2d-v5 (Minari medium).
+name: rfqi_walker2d
+algorithm: robustrllib/configs/algorithm/rfqi.yaml
+task: robustrllib/configs/task/walker2d_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  rho: 0.3
+  actor_lr: 0.0003
+  critic_lr: 0.0008
+train: {updates: 500000}

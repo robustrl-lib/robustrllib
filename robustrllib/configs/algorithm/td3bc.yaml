@@ -1,0 +1,15 @@
+# TD3+BC (Fujimoto & Gu, 2021): the paper's TD3+BC table.
+name: td3bc
+entry: baselines/td3bc/train.py
+class: baselines.td3bc.policy:TD3BCPolicy
+checkpoint: last
+hparams:
+  alpha: 2.5             # weight of Q against the behaviour-cloning term
+  policy_noise: 0.2      # target policy smoothing
+  noise_clip: 0.5
+  policy_freq: 2         # actor update every second critic update
+  lr: 3.0e-4
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 256
+  normalize_states: true # dataset mean / standard deviation

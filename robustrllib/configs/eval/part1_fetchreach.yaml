@@ -1,0 +1,143 @@
+# Part 1 (library-wide grid), FetchReachDense-v3: the rungs of the paper's evaluation-grid table,
+# grouped by severity quartile Q1-Q4 (displacement from nominal).
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: morphology_0.8
+  axis: morphology
+  quartile: 1
+  severity: 0.8
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:shoulder_lift_link', factor: 0.8}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:upperarm_roll_link', factor: 0.8}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:elbow_flex_link', factor: 0.8}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:forearm_roll_link', factor: 0.8}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:wrist_flex_link', factor: 0.8}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:wrist_roll_link', factor: 0.8}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:gripper_link', factor: 0.8}
+- name: morphology_1.2
+  axis: morphology
+  quartile: 2
+  severity: 1.2
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:shoulder_lift_link', factor: 1.2}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:upperarm_roll_link', factor: 1.2}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:elbow_flex_link', factor: 1.2}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:forearm_roll_link', factor: 1.2}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:wrist_flex_link', factor: 1.2}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:wrist_roll_link', factor: 1.2}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:gripper_link', factor: 1.2}
+- name: morphology_1.4
+  axis: morphology
+  quartile: 3
+  severity: 1.4
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:shoulder_lift_link', factor: 1.4}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:upperarm_roll_link', factor: 1.4}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:elbow_flex_link', factor: 1.4}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:forearm_roll_link', factor: 1.4}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:wrist_flex_link', factor: 1.4}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:wrist_roll_link', factor: 1.4}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:gripper_link', factor: 1.4}
+- name: morphology_1.6
+  axis: morphology
+  quartile: 4
+  severity: 1.6
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:shoulder_lift_link', factor: 1.6}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:upperarm_roll_link', factor: 1.6}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:elbow_flex_link', factor: 1.6}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:forearm_roll_link', factor: 1.6}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:wrist_flex_link', factor: 1.6}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:wrist_roll_link', factor: 1.6}
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: 'robot0:gripper_link', factor: 1.6}
+- name: gear_0.4
+  axis: gear
+  quartile: 1
+  severity: 0.4
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.4}
+- name: gear_0.2
+  axis: gear
+  quartile: 2
+  severity: 0.2
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.2}
+- name: gear_0.1
+  axis: gear
+  quartile: 3
+  severity: 0.1
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.1}
+- name: gear_2
+  axis: gear
+  quartile: 4
+  severity: 2.0
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 2.0}

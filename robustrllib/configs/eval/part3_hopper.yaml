@@ -1,0 +1,52 @@
+# Part 3 (compound shifts), Hopper: the reference system's factor set,
+# OmniH2O (He et al., 2024); each channel alone, then all factors jointly (compound). Brackets are
+# sampling supports, redrawn per episode or per step.
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: theta_p
+  shifts:
+  - target: dynamics
+    mode: loguniform
+    params: {param: geom_friction, index: all, low: 0.3807, high: 1.0589}
+  - target: dynamics
+    mode: loguniform
+    params: {param: body_mass, index: all, low: 0.8073, high: 1.1705}
+  - target: dynamics
+    mode: loguniform
+    params: {param: actuator_gear, index: all, low: 0.8415, high: 1.1433}
+  - target: dynamics
+    mode: push
+    params: {body: torso, interval: 625, duration: 10, force: 118.8, direction: random_x}
+- name: theta_a
+  shifts:
+  - target: action
+    mode: gauss
+    params: {sigma: 0.06, clip_first: true}
+- name: theta_tau
+  shifts:
+  - target: latency
+    mode: buffer
+    params: {low: 1, high: 2}
+- name: compound
+  shifts:
+  - target: dynamics
+    mode: loguniform
+    params: {param: geom_friction, index: all, low: 0.3807, high: 1.0589}
+  - target: dynamics
+    mode: loguniform
+    params: {param: body_mass, index: all, low: 0.8073, high: 1.1705}
+  - target: dynamics
+    mode: loguniform
+    params: {param: actuator_gear, index: all, low: 0.8415, high: 1.1433}
+  - target: dynamics
+    mode: push
+    params: {body: torso, interval: 625, duration: 10, force: 118.8, direction: random_x}
+  - target: action
+    mode: gauss
+    params: {sigma: 0.06, clip_first: true}
+  - target: latency
+    mode: buffer
+    params: {low: 1, high: 2}

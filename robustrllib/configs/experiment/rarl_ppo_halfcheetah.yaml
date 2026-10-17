@@ -1,0 +1,10 @@
+# RARL-PPO on HalfCheetah-v5: the adversary pushes the torso and both feet in the sagittal plane.
+name: rarl_ppo_halfcheetah
+algorithm: robustrllib/configs/algorithm/rarl_ppo.yaml
+task: robustrllib/configs/task/halfcheetah.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  adversary: {kind: body_force, bodies: [torso, bfoot, ffoot], axes: [x, z], force: 5.0}
+  n_envs: 4
+  normalize: true
+train: {steps: 2000000}

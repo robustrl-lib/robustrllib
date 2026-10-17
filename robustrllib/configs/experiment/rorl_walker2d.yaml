@@ -1,0 +1,16 @@
+# RORL on Walker2d-v5 (Minari medium).
+name: rorl_walker2d
+algorithm: robustrllib/configs/algorithm/rorl.yaml
+task: robustrllib/configs/task/walker2d_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  num_samples: 20
+  policy_smooth_eps: 0.01
+  policy_smooth_reg: 1.0
+  q_smooth_eps: 0.01
+  q_ood_eps: 0.01
+  q_ood_reg: 0.1
+  q_ood_uncertainty_reg: 1.0
+  q_ood_uncertainty_reg_min: 0.1
+  q_ood_uncertainty_decay: 5.0e-07
+train: {updates: 3000000}

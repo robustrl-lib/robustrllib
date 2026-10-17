@@ -1,0 +1,32 @@
+# Training-time arms of Part 2: shifts that act on the learning signal while a method
+# trains (online: on the environment; offline: on the dataset rewards). The policy is
+# then evaluated on the nominal task. Select one with `baselines/train.py --train-shift`.
+# reward_*: corruption matched at std 0.5; reward_delay_k: reward released every k steps.
+reward_gauss:
+- target: reward
+  mode: gauss
+  params: {sigma: 0.5}
+reward_uniform:
+- target: reward
+  mode: uniform
+  params: {low: -0.866, high: 0.866}
+reward_shift:
+- target: reward
+  mode: shift
+  params: {shift: 0.5}
+reward_delay_4:
+- target: latency
+  mode: delay
+  params: {steps: 4, release: interval}
+reward_delay_16:
+- target: latency
+  mode: delay
+  params: {steps: 16, release: interval}
+reward_delay_32:
+- target: latency
+  mode: delay
+  params: {steps: 32, release: interval}
+reward_delay_64:
+- target: latency
+  mode: delay
+  params: {steps: 64, release: interval}

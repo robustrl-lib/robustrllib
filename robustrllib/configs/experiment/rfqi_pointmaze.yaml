@@ -1,0 +1,10 @@
+# RFQI on PointMaze_Open-v3 (D4RL open).
+name: rfqi_pointmaze
+algorithm: robustrllib/configs/algorithm/rfqi.yaml
+task: robustrllib/configs/task/pointmaze_open.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_open.yaml
+hparams:
+  rho: 0.3
+  actor_lr: 0.0003
+  critic_lr: 0.0008
+train: {updates: 500000}

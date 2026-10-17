@@ -1,0 +1,9 @@
+# A worked example of an experiment card for a custom algorithm: the REINFORCE template on
+# Hopper, evaluated on the Part 1 grid.
+#   python baselines/train.py -c examples/reinforce_hopper.yaml --seed 0
+#   python baselines/evaluate.py --run runs/reinforce_hopper/seed0
+name: reinforce_hopper
+algorithm: robustrllib/configs/algorithm/reinforce.yaml
+task: robustrllib/configs/task/hopper.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {steps: 20000}

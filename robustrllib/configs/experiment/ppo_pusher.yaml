@@ -1,0 +1,7 @@
+# PPO on Pusher (Part 3 compound profile), trained on the nominal task.
+name: ppo_pusher
+algorithm: robustrllib/configs/algorithm/ppo.yaml
+task: robustrllib/configs/task/pusher.yaml
+eval: robustrllib/configs/eval/part3_pusher.yaml
+hparams: {normalize: true}
+train: {steps: 2000000}

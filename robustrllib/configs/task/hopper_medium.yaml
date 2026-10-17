@@ -1,0 +1,5 @@
+# MuJoCo locomotion, offline methods: Hopper-v5 with the Minari medium dataset.
+name: hopper_medium
+env_id: Hopper-v5
+dataset: mujoco/hopper/medium-v0
+score: {min: -20.27, max: 3234.3}   # normalization anchors: D4RL v2 random / expert

@@ -1,0 +1,18 @@
+# SAC (Stable-Baselines3): shared values from the latest SAC hyperparameter table.
+# CarRacing overrides are in experiment/sac_carracing.yaml.
+name: sac
+entry: baselines/sb3/train.py
+class: baselines.sb3.policy:SB3Policy
+checkpoint: last
+hparams:
+  learning_rate: 3.0e-4
+  buffer_size: 1000000
+  learning_starts: 100
+  batch_size: 256
+  tau: 0.005
+  gamma: 0.99
+  train_freq: 1
+  gradient_steps: 1
+  ent_coef: auto         # temperature tuned towards the target entropy
+  target_entropy: auto   # minus the action dimension
+  policy_kwargs: {net_arch: [256, 256]}  # two hidden layers for both actor and critics

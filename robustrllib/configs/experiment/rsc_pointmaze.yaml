@@ -1,0 +1,13 @@
+# RSC-SAC on PointMaze_UMaze-v3; the two goal coordinates are never intervened on.
+name: rsc_pointmaze
+algorithm: robustrllib/configs/algorithm/rsc.yaml
+task: robustrllib/configs/task/pointmaze_umaze.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_umaze.yaml
+hparams:
+  critic_lr: 3.0e-4
+  warmup: 300000
+  mix: 0.10
+  selected_fraction: 0.25
+  reference_size: null
+  protect_last: 2
+train: {steps: 1000000}

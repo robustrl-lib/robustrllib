@@ -1,0 +1,6 @@
+# PLR-PVL on Hopper-v5 (Minari medium).
+name: plr_pvl_hopper
+algorithm: robustrllib/configs/algorithm/plr_pvl.yaml
+task: robustrllib/configs/task/hopper_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {updates: 1000000}

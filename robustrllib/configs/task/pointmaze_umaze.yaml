@@ -1,0 +1,7 @@
+# Goal-conditioned navigation in the U-maze, online methods (the offline task is PointMaze_Open).
+name: pointmaze_umaze
+env_id: PointMaze_UMaze-v3
+max_episode_steps: 300
+env_kwargs: {reward_type: sparse, continuing_task: true, reset_target: true}   # a new goal after every success
+observation: {keys: [observation, desired_goal]}                             # 6-D: position, velocity, goal
+score: {min: 0.23, max: 5.5}   # normalization anchors: random policy / kinematic ceiling; return = goals reached in 300 steps

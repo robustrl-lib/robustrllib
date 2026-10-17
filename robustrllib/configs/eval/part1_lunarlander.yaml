@@ -1,0 +1,205 @@
+# Part 1 (library-wide grid), LunarLanderContinuous-v3: the rungs of the paper's evaluation-grid table,
+# grouped by severity quartile Q1-Q4 (displacement from nominal).
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: gravity_0.9
+  axis: gravity
+  quartile: 1
+  severity: 0.9
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 0.9}
+- name: gravity_1.1
+  axis: gravity
+  quartile: 1
+  severity: 1.1
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 1.1}
+- name: gravity_1.15
+  axis: gravity
+  quartile: 2
+  severity: 1.15
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 1.15}
+- name: gravity_0.85
+  axis: gravity
+  quartile: 3
+  severity: 0.85
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 0.85}
+- name: gravity_0.75
+  axis: gravity
+  quartile: 4
+  severity: 0.75
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 0.75}
+- name: gravity_1.25
+  axis: gravity
+  quartile: 4
+  severity: 1.25
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 1.25}
+- name: engine_power_0.9
+  axis: engine_power
+  quartile: 1
+  severity: 0.9
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: main_engine_power, factor: 0.9}
+  - target: dynamics
+    mode: scale
+    params: {param: side_engine_power, factor: 0.9}
+- name: engine_power_1.1
+  axis: engine_power
+  quartile: 1
+  severity: 1.1
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: main_engine_power, factor: 1.1}
+  - target: dynamics
+    mode: scale
+    params: {param: side_engine_power, factor: 1.1}
+- name: engine_power_0.75
+  axis: engine_power
+  quartile: 2
+  severity: 0.75
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: main_engine_power, factor: 0.75}
+  - target: dynamics
+    mode: scale
+    params: {param: side_engine_power, factor: 0.75}
+- name: engine_power_1.25
+  axis: engine_power
+  quartile: 3
+  severity: 1.25
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: main_engine_power, factor: 1.25}
+  - target: dynamics
+    mode: scale
+    params: {param: side_engine_power, factor: 1.25}
+- name: engine_power_0.6
+  axis: engine_power
+  quartile: 4
+  severity: 0.6
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: main_engine_power, factor: 0.6}
+  - target: dynamics
+    mode: scale
+    params: {param: side_engine_power, factor: 0.6}
+- name: engine_power_1.4
+  axis: engine_power
+  quartile: 4
+  severity: 1.4
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: main_engine_power, factor: 1.4}
+  - target: dynamics
+    mode: scale
+    params: {param: side_engine_power, factor: 1.4}
+- name: wind_5
+  axis: wind
+  quartile: 1
+  severity: 5.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: enable_wind, value: 1.0}
+  - target: dynamics
+    mode: set
+    params: {param: wind_power, value: 5.0}
+  - target: dynamics
+    mode: set
+    params: {param: turbulence_power, value: 0.0}
+- name: wind_10
+  axis: wind
+  quartile: 1
+  severity: 10.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: enable_wind, value: 1.0}
+  - target: dynamics
+    mode: set
+    params: {param: wind_power, value: 10.0}
+  - target: dynamics
+    mode: set
+    params: {param: turbulence_power, value: 0.0}
+- name: wind_15
+  axis: wind
+  quartile: 2
+  severity: 15.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: enable_wind, value: 1.0}
+  - target: dynamics
+    mode: set
+    params: {param: wind_power, value: 15.0}
+  - target: dynamics
+    mode: set
+    params: {param: turbulence_power, value: 0.0}
+- name: wind_20
+  axis: wind
+  quartile: 3
+  severity: 20.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: enable_wind, value: 1.0}
+  - target: dynamics
+    mode: set
+    params: {param: wind_power, value: 20.0}
+  - target: dynamics
+    mode: set
+    params: {param: turbulence_power, value: 0.0}
+- name: wind_25
+  axis: wind
+  quartile: 4
+  severity: 25.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: enable_wind, value: 1.0}
+  - target: dynamics
+    mode: set
+    params: {param: wind_power, value: 25.0}
+  - target: dynamics
+    mode: set
+    params: {param: turbulence_power, value: 0.0}
+- name: wind_30
+  axis: wind
+  quartile: 4
+  severity: 30.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: enable_wind, value: 1.0}
+  - target: dynamics
+    mode: set
+    params: {param: wind_power, value: 30.0}
+  - target: dynamics
+    mode: set
+    params: {param: turbulence_power, value: 0.0}

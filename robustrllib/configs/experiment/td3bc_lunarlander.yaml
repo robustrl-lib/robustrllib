@@ -1,0 +1,6 @@
+# TD3+BC on LunarLanderContinuous-v3 (medium).
+name: td3bc_lunarlander
+algorithm: robustrllib/configs/algorithm/td3bc.yaml
+task: robustrllib/configs/task/lunarlander_medium.yaml
+eval: robustrllib/configs/eval/part1_lunarlander.yaml
+train: {updates: 1000000}

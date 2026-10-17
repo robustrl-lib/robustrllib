@@ -1,0 +1,6 @@
+# RSC-SAC on FetchReachDense-v3 (13-D observation with the gripper-relative goal).
+name: rsc_fetchreach
+algorithm: robustrllib/configs/algorithm/rsc.yaml
+task: robustrllib/configs/task/fetchreach.yaml
+eval: robustrllib/configs/eval/part1_fetchreach.yaml
+train: {steps: 1000000}

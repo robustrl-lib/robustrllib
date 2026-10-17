@@ -1,0 +1,54 @@
+# G1 evaluation conditions built on the training ranges of OmniH2O (He et al., 2024, arXiv 2406.08858,
+# Table 16). Each condition sets one axis to a fixed value; every other axis is nominal.
+# calibration_region: where the value lies relative to the OmniH2O range (id = inside, boundary = on its
+# edge, ood = beyond it). The ranges below are the OmniH2O training envelope (isaac/tasks/g1.py).
+calibration:
+  friction: {range: [0.2, 1.1]}
+  link_mass_scale: {range: [0.7, 1.3]}
+  base_com_offset_m: {range: [-0.1, 0.1]}
+  kp_scale: {range: [0.75, 1.25]}
+  kd_scale: {range: [0.75, 1.25]}
+  torque_rfi_ratio: {value: 0.1, reference: motor_effort_limit}
+  control_delay_ms: {range: [20, 60]}
+  velocity_push: {interval_s: 5.0, xy_speed_mps: 1.0}
+
+conditions:
+  - {name: nominal, axis: nominal, value: 0.0, calibration_region: nominal}
+
+  - {name: friction_0p8, axis: friction, value: 0.8, calibration_region: id}
+  - {name: friction_0p5, axis: friction, value: 0.5, calibration_region: id}
+  - {name: friction_0p2, axis: friction, value: 0.2, calibration_region: boundary}
+
+  - {name: mass_0p7, axis: link_mass_scale, value: 0.7, calibration_region: boundary}
+  - {name: mass_0p85, axis: link_mass_scale, value: 0.85, calibration_region: id}
+  - {name: mass_1p15, axis: link_mass_scale, value: 1.15, calibration_region: id}
+  - {name: mass_1p3, axis: link_mass_scale, value: 1.3, calibration_region: boundary}
+
+  - {name: com_x_neg_0p10, axis: base_com_offset, value: [-0.10, 0.0, 0.0], calibration_region: boundary}
+  - {name: com_x_pos_0p10, axis: base_com_offset, value: [0.10, 0.0, 0.0], calibration_region: boundary}
+  - {name: com_y_neg_0p10, axis: base_com_offset, value: [0.0, -0.10, 0.0], calibration_region: boundary}
+  - {name: com_y_pos_0p10, axis: base_com_offset, value: [0.0, 0.10, 0.0], calibration_region: boundary}
+
+  - {name: kp_0p75, axis: kp_scale, value: 0.75, calibration_region: boundary}
+  - {name: kp_1p25, axis: kp_scale, value: 1.25, calibration_region: boundary}
+  - {name: kd_0p75, axis: kd_scale, value: 0.75, calibration_region: boundary}
+  - {name: kd_1p25, axis: kd_scale, value: 1.25, calibration_region: boundary}
+
+  - {name: torque_rfi_0p05, axis: torque_rfi_ratio, value: 0.05, calibration_region: id}
+  - {name: torque_rfi_0p10, axis: torque_rfi_ratio, value: 0.10, calibration_region: boundary}
+
+  - {name: delay_20ms, axis: control_delay_ms, value: 20, calibration_region: boundary}
+  - {name: delay_40ms, axis: control_delay_ms, value: 40, calibration_region: id}
+  - {name: delay_60ms, axis: control_delay_ms, value: 60, calibration_region: boundary}
+
+  - {name: push_x_neg_1mps, axis: velocity_push, value: [-1.0, 0.0], interval_s: 5.0, calibration_region: boundary}
+  - {name: push_x_pos_1mps, axis: velocity_push, value: [1.0, 0.0], interval_s: 5.0, calibration_region: boundary}
+  - {name: push_y_neg_1mps, axis: velocity_push, value: [0.0, -1.0], interval_s: 5.0, calibration_region: boundary}
+  - {name: push_y_pos_1mps, axis: velocity_push, value: [0.0, 1.0], interval_s: 5.0, calibration_region: boundary}
+
+ood_conditions:
+  - {name: friction_0p1_ood, axis: friction, value: 0.1, calibration_region: ood}
+  - {name: mass_1p5_ood, axis: link_mass_scale, value: 1.5, calibration_region: ood}
+  - {name: com_x_pos_0p15_ood, axis: base_com_offset, value: [0.15, 0.0, 0.0], calibration_region: ood}
+  - {name: delay_80ms_ood, axis: control_delay_ms, value: 80, calibration_region: ood}
+  - {name: torque_rfi_0p20_ood, axis: torque_rfi_ratio, value: 0.20, calibration_region: ood}

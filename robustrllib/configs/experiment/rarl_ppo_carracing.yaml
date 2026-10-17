@@ -1,0 +1,14 @@
+# RARL-PPO on CarRacing-v2 with discrete actions: the adversary pushes the car body.
+name: rarl_ppo_carracing
+algorithm: robustrllib/configs/algorithm/rarl_ppo.yaml
+task: robustrllib/configs/task/carracing_discrete.yaml
+eval: robustrllib/configs/eval/part1_carracing.yaml
+hparams:
+  adversary: {kind: hull_force, force: 5.0}
+  update_ratio: [2, 1]
+  warmup: 40000
+  zero_force_prob: 0.25
+  learning_rate: 2.5e-4
+  n_steps: 256
+  ent_coef: 0.01
+train: {steps: 2000000}

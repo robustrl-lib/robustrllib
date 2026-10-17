@@ -1,0 +1,33 @@
+# PLR-PVL: FWM with an ensemble of flow models, each target taken from the model with the
+# largest positive value loss; the paper's PLR-PVL table.
+name: plr_pvl
+entry: baselines/plr_pvl/train.py
+class: baselines.iql.policy:IQLPolicy
+checkpoint: last
+hparams:
+  expectile: 0.7       # IQL backbone: the paper's IQL table
+  beta: 3.0
+  adv_clip: 100.0
+  lr: 3.0e-4
+  hidden: 256
+  dropout: 0.0
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 256
+  robust_every: 10          # h-step critic update every n-th update
+  h: 5                      # horizon of the h-step targets
+  window: 12                # flow-model window
+  fm_n_steps: 5             # ODE steps when sampling
+  fm_ode_solver: midpoint
+  fm_guidance_weight: 2.0
+  warm_start_updates: 0     # plain IQL updates before the mechanism starts
+  flow_dir: null            # existing flow models (model<k>.pt); trained on the run's data when null
+  flow:                     # flow-model training
+    n_feat: 128             # U-Net features
+    lr: 1.0e-4
+    batch_size: 256
+    drop_prob: 0.2          # conditioning dropout
+    epochs: 5000
+    batches_per_epoch: 40
+  n_flow_models: 3          # flow-model ensemble (trained from different seeds)
+  pvl_lam: 0.95             # lambda of the positive value loss

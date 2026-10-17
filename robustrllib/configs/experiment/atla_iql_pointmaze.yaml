@@ -1,0 +1,6 @@
+# ATLA-IQL on PointMaze_Open-v3 (D4RL open).
+name: atla_iql_pointmaze
+algorithm: robustrllib/configs/algorithm/atla_iql.yaml
+task: robustrllib/configs/task/pointmaze_open.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_open.yaml
+train: {updates: 1000000}

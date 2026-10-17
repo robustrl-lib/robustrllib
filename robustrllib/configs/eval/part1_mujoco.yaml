@@ -1,0 +1,199 @@
+# Part 1 (library-wide grid), Hopper-v5, Walker2d-v5, HalfCheetah-v5: the rungs of the paper's evaluation-grid table,
+# grouped by severity quartile Q1-Q4 (displacement from nominal).
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: gravity_0.9
+  axis: gravity
+  quartile: 1
+  severity: 0.9
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 0.9}
+- name: gravity_1.1
+  axis: gravity
+  quartile: 1
+  severity: 1.1
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 1.1}
+- name: gravity_0.8
+  axis: gravity
+  quartile: 2
+  severity: 0.8
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 0.8}
+- name: gravity_1.2
+  axis: gravity
+  quartile: 2
+  severity: 1.2
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 1.2}
+- name: gravity_0.7
+  axis: gravity
+  quartile: 3
+  severity: 0.7
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 0.7}
+- name: gravity_1.3
+  axis: gravity
+  quartile: 3
+  severity: 1.3
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 1.3}
+- name: gravity_0.6
+  axis: gravity
+  quartile: 4
+  severity: 0.6
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 0.6}
+- name: gravity_1.4
+  axis: gravity
+  quartile: 4
+  severity: 1.4
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: gravity, factor: 1.4}
+- name: morphology_0.9
+  axis: morphology
+  quartile: 1
+  severity: 0.9
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: all, factor: 0.9}
+- name: morphology_1.1
+  axis: morphology
+  quartile: 1
+  severity: 1.1
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: all, factor: 1.1}
+- name: morphology_0.8
+  axis: morphology
+  quartile: 2
+  severity: 0.8
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: all, factor: 0.8}
+- name: morphology_1.2
+  axis: morphology
+  quartile: 2
+  severity: 1.2
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: all, factor: 1.2}
+- name: morphology_0.7
+  axis: morphology
+  quartile: 3
+  severity: 0.7
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: all, factor: 0.7}
+- name: morphology_1.3
+  axis: morphology
+  quartile: 3
+  severity: 1.3
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: all, factor: 1.3}
+- name: morphology_0.6
+  axis: morphology
+  quartile: 4
+  severity: 0.6
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: all, factor: 0.6}
+- name: morphology_1.4
+  axis: morphology
+  quartile: 4
+  severity: 1.4
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: body_pos_xyz, index: all, factor: 1.4}
+- name: gear_0.9
+  axis: gear
+  quartile: 1
+  severity: 0.9
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.9}
+- name: gear_1.1
+  axis: gear
+  quartile: 1
+  severity: 1.1
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 1.1}
+- name: gear_0.8
+  axis: gear
+  quartile: 2
+  severity: 0.8
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.8}
+- name: gear_1.2
+  axis: gear
+  quartile: 2
+  severity: 1.2
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 1.2}
+- name: gear_0.7
+  axis: gear
+  quartile: 3
+  severity: 0.7
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.7}
+- name: gear_1.3
+  axis: gear
+  quartile: 3
+  severity: 1.3
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 1.3}
+- name: gear_0.6
+  axis: gear
+  quartile: 4
+  severity: 0.6
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.6}
+- name: gear_1.4
+  axis: gear
+  quartile: 4
+  severity: 1.4
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 1.4}

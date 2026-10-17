@@ -1,0 +1,11 @@
+# DR-SAC on PointMaze_UMaze-v3 (Part 1): gear from U(0.9, 1.1) and joint dry friction
+# (frictionloss, nominal 0) from U(0, 7.5), drawn per episode.
+name: dr_sac_pointmaze
+algorithm: robustrllib/configs/algorithm/dr_sac.yaml
+task: robustrllib/configs/task/pointmaze_umaze.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_umaze.yaml
+hparams:
+  randomize:
+  - {target: dynamics, mode: uniform, params: {param: actuator_gear, index: all, low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: dof_frictionloss, index: all, operation: set, nominal: 0.0, low: 0.0, high: 7.5}}
+train: {steps: 1000000}

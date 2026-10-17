@@ -1,0 +1,40 @@
+# ATLA-SA-PPO (Zhang et al., ICLR 2021): ATLA with an LSTM policy and the SA-PPO
+# state-adversarial regulariser (Zhang et al., NeurIPS 2020), whose worst neighbouring
+# observation is found by SGLD; its radius ramps linearly to robust_ppo_eps.
+# Defaults: the official Hopper configuration; keys follow the official configuration files.
+name: atla_sa
+entry: baselines/atla/train.py
+class: baselines.atla.policy:ATLAPolicy
+checkpoint: last
+hparams:
+  mode: adv_sa_ppo
+  history_length: 100           # LSTM policy and value networks, trained on 100-step chunks
+  t: 2048                       # rollout steps per iteration (protagonist and adversary each)
+  gamma: 0.99
+  lambda: 0.95
+  ppo_epochs: 10
+  num_minibatches: 32
+  clip_eps: 0.2
+  clip_val_eps: 0.2
+  value_clipping: false
+  val_epochs: 10
+  adam_eps: 1.0e-5
+  anneal_lr: true
+  norm_states: true
+  norm_rewards: returns
+  clip_observations: 10.0
+  clip_rewards: 10.0
+  initial_std: 1.0
+  entropy_coeff: 0.01
+  ppo_lr_adam: 1.0e-3           # policy learning rate
+  val_lr: 1.0e-2                # value learning rate
+  robust_ppo_eps: 0.075         # observation radius on normalised observations
+  robust_ppo_reg: 0.3           # SA regularisation weight
+  robust_ppo_pgd_steps: 2       # SGLD steps of the SA regulariser
+  robust_ppo_eps_scheduler_opts: start=1,length=1831
+  adv_ppo_lr_adam: 1.0e-2       # adversary policy learning rate
+  adv_val_lr: 1.0e-2            # adversary value learning rate
+  adv_clip_eps: 0.2
+  adv_entropy_coeff: 0.001
+  adv_policy_steps: 1           # protagonist updates per iteration
+  adv_adversary_steps: 1        # adversary updates per iteration

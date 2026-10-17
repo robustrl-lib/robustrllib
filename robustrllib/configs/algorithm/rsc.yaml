@@ -1,0 +1,33 @@
+# RSC-SAC (Ding et al., 2023): SAC trained on replay batches in which a learned causal
+# model intervenes on the state variables that do not cause the reward.
+name: rsc
+entry: baselines/rsc/train.py
+class: baselines.rsc.policy:RSCPolicy
+checkpoint: last
+hparams:
+  # SAC
+  actor_lr: 3.0e-4
+  critic_lr: 1.0e-3
+  lr_final: null            # both rates decay linearly to this value; null: constant
+  net_arch: [256, 256]
+  buffer_size: 1000000
+  learning_starts: 10000    # uniform random actions before learning starts
+  batch_size: 256
+  train_freq: 1
+  gradient_steps: 1
+  gamma: 0.99
+  tau: 0.005
+  target_entropy: auto
+  use_sde: false            # state-dependent exploration noise
+  sde_sample_freq: -1
+  log_std_init: null
+  # RSC
+  warmup: 100000            # environment steps before replay batches are intervened on
+  ramp: 0                   # steps after the warm-up over which the intervened fraction rises to `mix`
+  cooldown: 0               # final steps over which it falls back to zero
+  mix: 0.25                 # fraction of every replay batch that is intervened on
+  selected_fraction: null   # fraction of the candidate variables replaced; null: one variable
+  reference_size: 128       # replay samples the replacement values come from; null: the batch itself
+  protect_last: 0           # trailing observation entries that are never intervened on
+  dynamics_lr: 1.0e-4       # causal model
+  dynamics: {hidden: 256, layers: 3, width: 32, mask_init: 3.0, sparse_weight: 0.01, sparse_norm: 0.1}

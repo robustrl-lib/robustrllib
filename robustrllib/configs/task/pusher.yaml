@@ -1,0 +1,5 @@
+# Arm pushing an object to a goal; the task of the Part 3 compound profile.
+name: pusher
+env_id: Pusher-v5s
+env_kwargs: {xml_file: pusher_r.xml}
+score: {min: -146.2, max: -23.97}   # normalization anchors: random policy / PPO nominal

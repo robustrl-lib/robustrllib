@@ -1,0 +1,11 @@
+# RARL-PPO on Pusher (Part 3 compound profile, row "RARL"): the adversary pushes the object on the table.
+name: rarl_ppo_pusher
+algorithm: robustrllib/configs/algorithm/rarl_ppo.yaml
+task: robustrllib/configs/task/pusher.yaml
+eval: robustrllib/configs/eval/part3_pusher.yaml
+hparams:
+  adversary: {kind: body_force, bodies: [object], axes: [x, y], force: 0.1}
+  update_ratio: [2, 1]
+  warmup: 50000
+  zero_force_prob: 0.25
+train: {steps: 2000000}

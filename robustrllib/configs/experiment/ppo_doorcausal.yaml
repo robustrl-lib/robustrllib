@@ -1,0 +1,7 @@
+# PPO on DoorCausal (Part 2, semantic channel): trained on the hhl binding, evaluated on hhl and hhr.
+name: ppo_doorcausal
+algorithm: robustrllib/configs/algorithm/ppo.yaml
+task: robustrllib/configs/task/doorcausal.yaml
+eval: robustrllib/configs/eval/part2_doorcausal.yaml
+hparams: {normalize: true}
+train: {steps: 2000000}

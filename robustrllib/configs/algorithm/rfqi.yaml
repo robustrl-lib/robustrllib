@@ -1,0 +1,22 @@
+# RFQI (Panaganti et al., 2022): the paper's RFQI table; the experiment cards set each task's
+# radius and learning rates. RFQI reports its best checkpoint.
+name: rfqi
+entry: baselines/rfqi/train.py
+class: baselines.rfqi.policy:RFQIPolicy
+checkpoint: best
+hparams:
+  rho: 0.5                      # radius of the uncertainty set
+  actor_lr: 3.0e-4
+  critic_lr: 8.0e-4
+  vae_lr: 1.0e-3
+  phi: 0.1                      # perturbation limit
+  lmbda: 0.75                   # convex weight of min / max of the twin critics
+  eta_tol: 1.0e-3               # dual solve: tolerance ...
+  eta_max_steps: 10000          # ... and step limit
+  adam_lr: 1.0e-3               # dual network
+  adam_eps: 1.0e-6
+  target_action_samples: 10
+  policy_action_samples: 100
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 1000

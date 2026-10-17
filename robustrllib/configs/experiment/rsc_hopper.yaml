@@ -1,0 +1,6 @@
+# RSC-SAC on Hopper-v5.
+name: rsc_hopper
+algorithm: robustrllib/configs/algorithm/rsc.yaml
+task: robustrllib/configs/task/hopper.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {steps: 1000000}

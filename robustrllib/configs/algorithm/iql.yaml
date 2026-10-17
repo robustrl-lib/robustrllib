@@ -1,0 +1,15 @@
+# IQL (Kostrikov et al., 2022): the paper's IQL table. AdroitHandDoor sets beta 0.5 and dropout 0.1.
+name: iql
+entry: baselines/iql/train.py
+class: baselines.iql.policy:IQLPolicy
+checkpoint: last
+hparams:
+  expectile: 0.7       # expectile of the value regression
+  beta: 3.0            # inverse temperature of advantage-weighted regression
+  adv_clip: 100.0      # cap on the advantage weights
+  lr: 3.0e-4
+  hidden: 256          # two hidden layers per network
+  dropout: 0.0         # policy dropout
+  gamma: 0.99
+  tau: 0.005           # target-network averaging rate
+  batch_size: 256

@@ -1,0 +1,5 @@
+# Dexterous manipulation, offline methods: AdroitHandDoor-v1 with the D4RL expert dataset.
+name: door_expert
+env_id: AdroitHandDoor-v1
+dataset: D4RL/door/expert-v2
+score: {min: -56.51, max: 2880.57}   # normalization anchors: D4RL v2 random / expert

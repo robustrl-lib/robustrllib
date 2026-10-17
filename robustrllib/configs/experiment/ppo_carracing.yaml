@@ -1,0 +1,6 @@
+# PPO on CarRacing-v2 (Part 1), 4 stacked RGB frames, 5 discrete actions.
+name: ppo_carracing
+algorithm: robustrllib/configs/algorithm/ppo.yaml
+task: robustrllib/configs/task/carracing_discrete.yaml
+eval: robustrllib/configs/eval/part1_carracing.yaml
+train: {steps: 2000000}

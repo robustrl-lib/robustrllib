@@ -1,0 +1,7 @@
+# PPO on Hopper-v5 (Part 1; its runs also serve the Part 2 and Part 3 Hopper grids).
+name: ppo_hopper
+algorithm: robustrllib/configs/algorithm/ppo.yaml
+task: robustrllib/configs/task/hopper.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams: {normalize: true}
+train: {steps: 2000000}

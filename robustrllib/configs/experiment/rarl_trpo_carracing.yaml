@@ -1,0 +1,15 @@
+# RARL-TRPO on CarRacing-v2 with discrete actions: the adversary pushes the car body.
+name: rarl_trpo_carracing
+algorithm: robustrllib/configs/algorithm/rarl_trpo.yaml
+task: robustrllib/configs/task/carracing_discrete.yaml
+eval: robustrllib/configs/eval/part1_carracing.yaml
+hparams:
+  adversary: {kind: hull_force, force: 2.0}
+  update_ratio: [5, 1]
+  warmup: 300000
+  zero_force_prob: 0.5
+  learning_rate: 1.0e-4
+  adversary_lr: 5.0e-5
+  n_steps: 1024
+  policy_kwargs: {share_features_extractor: false}   # separate CNNs for the policy and the critic
+train: {steps: 2000000}

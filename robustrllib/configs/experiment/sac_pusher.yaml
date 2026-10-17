@@ -1,0 +1,7 @@
+# SAC on Pusher (Part 3 compound profile), trained on the nominal task.
+name: sac_pusher
+algorithm: robustrllib/configs/algorithm/sac.yaml
+task: robustrllib/configs/task/pusher.yaml
+eval: robustrllib/configs/eval/part3_pusher.yaml
+hparams: {learning_starts: 10000}
+train: {steps: 1000000}

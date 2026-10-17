@@ -1,0 +1,25 @@
+# ATLA-IQL: IQL against a learned state adversary; the paper's ATLA-IQL table.
+name: atla_iql
+entry: baselines/atla_iql/train.py
+class: baselines.iql.policy:IQLPolicy
+checkpoint: last
+hparams:
+  expectile: 0.7       # IQL backbone: the paper's IQL table
+  beta: 3.0
+  adv_clip: 100.0
+  lr: 3.0e-4
+  hidden: 256
+  dropout: 0.0
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 256
+  adv_eps: 0.025            # adversary radius (normalised observations)
+  adv_eps_ramp_steps: 15000 # updates over which the radius grows from 0
+  adv_steps: 1              # adversary updates per update
+  adv_ratio: 0.5            # share of perturbed rows in the adversary's own loss
+  actor_adv_ratio: 0.1      # weight of the adversarial actor loss
+  adv_lr: 3.0e-4
+  adv_l2_coeff: 0.02        # L2 penalty on the perturbation
+  adv_entropy_coeff: 0.0
+  ema_decay: 0.995          # averaged policy that acts
+  robust_every: 10          # adversarial actor loss every n-th update

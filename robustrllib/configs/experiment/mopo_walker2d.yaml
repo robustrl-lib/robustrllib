@@ -1,0 +1,11 @@
+# MOPO on Walker2d-v5 (Minari medium).
+name: mopo_walker2d
+algorithm: robustrllib/configs/algorithm/mopo.yaml
+task: robustrllib/configs/task/walker2d_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  rollout_length: 3
+  penalty_coeff: 1.0
+  penalty_type: ensemble_std
+  real_ratio: 0.5
+train: {updates: 1000000}

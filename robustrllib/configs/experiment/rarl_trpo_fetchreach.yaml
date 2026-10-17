@@ -1,0 +1,9 @@
+# RARL-TRPO on FetchReachDense-v3: the adversary offsets the Cartesian (dx, dy, dz) command.
+name: rarl_trpo_fetchreach
+algorithm: robustrllib/configs/algorithm/rarl_trpo.yaml
+task: robustrllib/configs/task/fetchreach.yaml
+eval: robustrllib/configs/eval/part1_fetchreach.yaml
+hparams:
+  adversary: {kind: action_nudge, dims: 3, force: 0.1}
+  log_std_floor: -1.0
+train: {steps: 2000000}

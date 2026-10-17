@@ -1,0 +1,21 @@
+# MOPO (Yu et al., 2020): the paper's MOPO table; the experiment cards set each task's
+# rollout horizon, penalty and real-data ratio.
+name: mopo
+entry: baselines/mopo/train.py
+class: baselines.mopo.policy:SACPolicy
+checkpoint: last
+hparams:
+  rollout_length: 5
+  penalty_coeff: 1.0
+  penalty_type: max_aleatoric   # or ensemble_std
+  real_ratio: 0.05              # share of dataset transitions in each SAC batch
+  num_networks: 7               # dynamics ensemble
+  num_elites: 5
+  rollout_batch_size: 50000     # rollouts per refresh
+  model_train_freq: 1000        # updates between refreshes
+  model_retain_epochs: 5        # refreshes kept in the model pool
+  target_entropy: -3
+  lr: 3.0e-4
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 256

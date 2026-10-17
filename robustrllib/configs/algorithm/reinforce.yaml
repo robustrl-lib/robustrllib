@@ -1,0 +1,10 @@
+# A custom algorithm plugged in by import path: the REINFORCE template of
+# robustrllib.algos, trained by the generic Algo trainer. No edit to the library is needed.
+name: reinforce
+entry: baselines/train_algo.py
+class: robustrllib.algos.template_reinforce:Reinforce
+checkpoint: last
+hparams:
+  lr: 0.0003
+  gamma: 0.99
+  hidden: [64, 64]

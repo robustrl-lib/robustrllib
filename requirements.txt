@@ -1,0 +1,24 @@
+# Everything the methods in baselines/ need, beyond the package (pip install -e ".[all]"
+# installs the same set). Isaac Lab (isaac/) and the VLA study (vla/) list their own
+# requirements in their READMEs.
+numpy>=1.21
+pyyaml>=6.0
+gymnasium>=0.29
+mujoco>=2.3.3
+imageio>=2.14
+box2d-py==2.3.5
+pygame>=2.1.3
+numba>=0.49.1
+opencv-python
+termcolor
+torch>=2.0
+stable-baselines3>=2.3
+sb3-contrib>=2.3
+minari>=0.4
+ema-pytorch
+gtimer
+joblib
+python-dateutil
+matplotlib
+tensorboardX          # optional: RORL logs to it when present
+pytest>=7.1

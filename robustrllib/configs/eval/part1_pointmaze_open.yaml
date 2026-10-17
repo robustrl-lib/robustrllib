@@ -1,0 +1,99 @@
+# Part 1 (library-wide grid), PointMaze_Open-v3: the rungs of the paper's evaluation-grid table,
+# grouped by severity quartile Q1-Q4 (displacement from nominal).
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: gear_0.4
+  axis: gear
+  quartile: 1
+  severity: 0.4
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.4}
+- name: gear_0.2
+  axis: gear
+  quartile: 2
+  severity: 0.2
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.2}
+- name: gear_0.1
+  axis: gear
+  quartile: 3
+  severity: 0.1
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.1}
+- name: gear_0.05
+  axis: gear
+  quartile: 4
+  severity: 0.05
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.05}
+- name: dry_friction_30
+  axis: dry_friction
+  quartile: 1
+  severity: 30.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: dof_frictionloss, index: all, value: 30.0}
+- name: dry_friction_45
+  axis: dry_friction
+  quartile: 2
+  severity: 45.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: dof_frictionloss, index: all, value: 45.0}
+- name: dry_friction_60
+  axis: dry_friction
+  quartile: 3
+  severity: 60.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: dof_frictionloss, index: all, value: 60.0}
+- name: dry_friction_75
+  axis: dry_friction
+  quartile: 4
+  severity: 75.0
+  shifts:
+  - target: dynamics
+    mode: set
+    params: {param: dof_frictionloss, index: all, value: 75.0}
+- name: oppose_goal_0.5
+  axis: adversarial_action
+  quartile: 1
+  shifts:
+  - target: action
+    mode: oppose_goal
+    params: {eps: 0.5}
+- name: rotate_60
+  axis: adversarial_action
+  quartile: 2
+  shifts:
+  - target: action
+    mode: rotate
+    params: {degrees: 60}
+- name: rotate_90
+  axis: adversarial_action
+  quartile: 3
+  shifts:
+  - target: action
+    mode: rotate
+    params: {degrees: 90}
+- name: oppose_1
+  axis: adversarial_action
+  quartile: 4
+  shifts:
+  - target: action
+    mode: oppose
+    params: {eps: 1.0}

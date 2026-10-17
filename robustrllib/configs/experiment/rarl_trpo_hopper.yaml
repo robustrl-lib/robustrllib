@@ -1,0 +1,11 @@
+# RARL-TRPO on Hopper-v5: the adversary pushes the foot in the sagittal plane.
+# The same run is scored on the Part 2 and Part 3 Hopper grids.
+name: rarl_trpo_hopper
+algorithm: robustrllib/configs/algorithm/rarl_trpo.yaml
+task: robustrllib/configs/task/hopper.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  adversary: {kind: body_force, bodies: [foot], axes: [x, z], force: 5.0}
+  n_envs: 4
+  normalize: true
+train: {steps: 2000000}

@@ -1,0 +1,132 @@
+# Part 2 (isolated shift channels), Hopper-v5: five equally weighted cells per frozen-policy
+# channel. The two MAD cells attack the observation with the policy's own actor; the
+# evaluator binds it, and a policy without a differentiable actor skips them.
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: obs_rel_0.10
+  channel: theta_o
+  shifts:
+  - target: observation
+    mode: relative
+    params:
+      frac: 0.1
+      ref_std: [0.16224, 0.06263, 0.20793, 0.28864, 0.61124, 0.81605, 1.43574, 1.15449, 2.2949, 3.3575, 6.1127]
+- name: obs_uni_0.10
+  channel: theta_o
+  shifts:
+  - target: observation
+    mode: uniform
+    params: {low: -0.1, high: 0.1}
+- name: obs_gauss_0.10
+  channel: theta_o
+  shifts:
+  - target: observation
+    mode: gauss
+    params: {sigma: 0.1}
+- name: mad_0.02
+  channel: theta_o
+  shifts:
+  - target: observation
+    mode: adversarial
+    params: {eps: 0.02, steps: 10}
+- name: mad_0.05
+  channel: theta_o
+  shifts:
+  - target: observation
+    mode: adversarial
+    params: {eps: 0.05, steps: 10}
+- name: act_uni_0.10
+  channel: theta_a
+  shifts:
+  - target: action
+    mode: uniform
+    params: {low: -0.1, high: 0.1, clip_first: true}
+- name: act_gauss_0.10
+  channel: theta_a
+  shifts:
+  - target: action
+    mode: gauss
+    params: {sigma: 0.1, clip_first: true}
+- name: act_offset_0.05
+  channel: theta_a
+  shifts:
+  - target: action
+    mode: shift
+    params: {shift: 0.05, clip_first: true}
+- name: act_oppose_0.10
+  channel: theta_a
+  shifts:
+  - target: action
+    mode: oppose
+    params: {eps: 0.1, clip_first: true}
+- name: cmd_oppose_0.20
+  channel: theta_a
+  shifts:
+  - target: action
+    mode: oppose
+    params: {eps: 0.2}
+- name: gear_static_0.8
+  channel: theta_p
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 0.8}
+- name: gear_ramp_0.8
+  channel: theta_p
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 1.0}
+    schedule: {type: linear, start: 1.0, end: 0.8, t0: 0, t1: 1000}
+- name: gear_sine_p500
+  channel: theta_p
+  shifts:
+  - target: dynamics
+    mode: scale
+    params: {param: actuator_gear, index: all, factor: 1.0}
+    schedule: {type: sine, start: 0.8, end: 1.2, period: 500}
+- name: push_60
+  channel: theta_p
+  shifts:
+  - target: dynamics
+    mode: push
+    params: {body: torso, interval: 250, duration: 12, force: 60.0, direction: random_x}
+- name: trans_t1
+  channel: theta_p
+  shifts:
+  - target: transition
+    mode: gauss
+    params: {q_sigma: 0.001, v_sigma: 0.01}
+- name: obs_delay_4ms
+  channel: theta_tau
+  shifts:
+  - target: latency
+    mode: interp
+    params: {low: 0.002, high: 0.004}
+- name: obs_delay_8ms
+  channel: theta_tau
+  shifts:
+  - target: latency
+    mode: interp
+    params: {low: 0.004, high: 0.008}
+- name: obs_delay_16ms
+  channel: theta_tau
+  shifts:
+  - target: latency
+    mode: interp
+    params: {low: 0.008, high: 0.016}
+- name: act_delay_8ms
+  channel: theta_tau
+  shifts:
+  - target: latency
+    mode: fixed
+    params: {steps: 1}
+- name: act_delay_rand1
+  channel: theta_tau
+  shifts:
+  - target: latency
+    mode: buffer
+    params: {low: 0, high: 1}

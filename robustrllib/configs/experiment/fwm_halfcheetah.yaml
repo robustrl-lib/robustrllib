@@ -1,0 +1,9 @@
+# FWM on HalfCheetah-v5 (Minari medium).
+name: fwm_halfcheetah
+algorithm: robustrllib/configs/algorithm/fwm.yaml
+task: robustrllib/configs/task/halfcheetah_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  robust_every: 20
+  warm_start_updates: 1000000   # 1M plain IQL updates before the 1M FWM updates
+train: {updates: 1000000}

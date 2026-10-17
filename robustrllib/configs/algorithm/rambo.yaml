@@ -1,0 +1,36 @@
+# RAMBO (Rigter et al., 2022): the paper's RAMBO table; the experiment cards set each task's
+# adversary weight, horizon and behaviour-cloning anchor.
+name: rambo
+entry: baselines/rambo/train.py
+class: baselines.rambo.policy:RAMBOPolicy
+checkpoint: last
+hparams:
+  adversary_weight: 3.0e-4      # weight of the adversarial term in the model loss
+  rollout_length: 5
+  bc_reg_weight: 0.0            # behaviour-cloning anchor kept on the actor
+  real_ratio: 0.5
+  target_entropy: auto          # minus the action dimension
+  critic_lr: 3.0e-4
+  actor_lr: 1.0e-4
+  alpha_lr: 1.0e-4
+  adv_lr: 3.0e-4
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 256
+  epoch_length: 1000            # SAC updates, then as many adversarial model updates
+  rollout_batch_size: 50000
+  model_train_freq: 1000
+  model_retain_epochs: 5
+  num_networks: 7
+  num_elites: 5
+  model_lr: 3.0e-4
+  model_max_logvar: 1.0
+  model_min_logvar: -6.0
+  model_bound_reg_coeff: 1.0e-3
+  model_holdout_ratio: 0.1
+  model_patience: 10
+  bc_epochs: 50                 # behaviour cloning before RL
+  bc_lr: 1.0e-4
+  bc_objective: nll             # or mse
+  divergence_q: 1.0e+5          # stop when |mean Q| exceeds this ...
+  divergence_check_after: 100000  # ... after this many updates

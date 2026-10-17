@@ -1,0 +1,11 @@
+# MOPO on Hopper-v5 (Minari medium).
+name: mopo_hopper
+algorithm: robustrllib/configs/algorithm/mopo.yaml
+task: robustrllib/configs/task/hopper_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  rollout_length: 42
+  penalty_coeff: 37.28
+  penalty_type: ensemble_std
+  real_ratio: 0.05
+train: {updates: 1000000}

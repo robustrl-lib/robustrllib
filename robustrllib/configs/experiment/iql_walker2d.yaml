@@ -1,0 +1,6 @@
+# IQL on Walker2d-v5 (Minari medium).
+name: iql_walker2d
+algorithm: robustrllib/configs/algorithm/iql.yaml
+task: robustrllib/configs/task/walker2d_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {updates: 1000000}

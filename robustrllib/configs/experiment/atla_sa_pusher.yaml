@@ -1,0 +1,7 @@
+# ATLA-SA-PPO on Pusher, evaluated on the Part 3 compound profile; hyperparameters are the
+# Hopper configuration.
+name: atla_sa_pusher
+algorithm: robustrllib/configs/algorithm/atla_sa.yaml
+task: robustrllib/configs/task/pusher.yaml
+eval: robustrllib/configs/eval/part3_pusher.yaml
+train: {steps: 4999168}   # 2441 iterations x 2048 steps

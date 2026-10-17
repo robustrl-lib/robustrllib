@@ -1,0 +1,11 @@
+# MOPO on AdroitHandDoor-v1 (D4RL expert).
+name: mopo_door
+algorithm: robustrllib/configs/algorithm/mopo.yaml
+task: robustrllib/configs/task/door_expert.yaml
+eval: robustrllib/configs/eval/part1_door.yaml
+hparams:
+  rollout_length: 1
+  penalty_coeff: 5.0
+  penalty_type: max_aleatoric
+  real_ratio: 0.5
+train: {updates: 1000000}

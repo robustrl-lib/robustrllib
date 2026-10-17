@@ -1,0 +1,6 @@
+checkpoints/
+logs/
+datasets/
+*.npz
+*.pth
+__pycache__/

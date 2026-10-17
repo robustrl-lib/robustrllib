@@ -1,0 +1,16 @@
+# ATLA-SA-PPO on FetchReachDense-v3 (gripper-relative goal).
+name: atla_sa_fetchreach
+algorithm: robustrllib/configs/algorithm/atla_sa.yaml
+task: robustrllib/configs/task/fetchreach.yaml
+eval: robustrllib/configs/eval/part1_fetchreach.yaml
+hparams:
+  robust_ppo_eps: 0.075
+  robust_ppo_reg: 0.3
+  ppo_lr_adam: 1.0e-3
+  val_lr: 1.0e-2
+  adv_ppo_lr_adam: 1.0e-2
+  adv_val_lr: 1.0e-2
+  adv_adversary_steps: 1
+  initial_std: 1.0
+  history_length: 100
+train: {steps: 4999168}   # 2441 iterations x 2048 steps

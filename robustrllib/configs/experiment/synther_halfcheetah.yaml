@@ -1,0 +1,6 @@
+# SynthER on HalfCheetah-v5 (Minari medium).
+name: synther_halfcheetah
+algorithm: robustrllib/configs/algorithm/synther.yaml
+task: robustrllib/configs/task/halfcheetah_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {updates: 1000000}

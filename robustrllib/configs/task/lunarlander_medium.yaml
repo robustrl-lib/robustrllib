@@ -1,0 +1,7 @@
+# Vehicle control, offline methods: LunarLanderContinuous-v3 with a medium-quality SAC dataset.
+# Create the dataset first (once):  python baselines/offline/lunarlander.py --out datasets/lunarlander_medium.npz
+name: lunarlander_medium
+env_id: LunarLanderContinuous-v3
+dataset: datasets/lunarlander_medium.npz
+binary_obs_dims: [6, 7]        # leg-contact indicators, 0 or 1
+score: {min: -213.9, max: 136.9}   # normalization anchors: random policy / IQL nominal

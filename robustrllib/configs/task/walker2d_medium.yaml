@@ -1,0 +1,5 @@
+# MuJoCo locomotion, offline methods: Walker2d-v5 with the Minari medium dataset.
+name: walker2d_medium
+env_id: Walker2d-v5
+dataset: mujoco/walker2d/medium-v0
+score: {min: 1.63, max: 4592.3}   # normalization anchors: D4RL v2 random / expert

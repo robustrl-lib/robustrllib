@@ -1,0 +1,6 @@
+# SAC on Walker2d-v5 (Part 1).
+name: sac_walker2d
+algorithm: robustrllib/configs/algorithm/sac.yaml
+task: robustrllib/configs/task/walker2d.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {steps: 1000000}

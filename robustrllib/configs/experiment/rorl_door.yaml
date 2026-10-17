@@ -1,0 +1,16 @@
+# RORL on AdroitHandDoor-v1 (D4RL expert).
+name: rorl_door
+algorithm: robustrllib/configs/algorithm/rorl.yaml
+task: robustrllib/configs/task/door_expert.yaml
+eval: robustrllib/configs/eval/part1_door.yaml
+hparams:
+  num_samples: 20
+  policy_smooth_eps: 0.01
+  policy_smooth_reg: 1.0
+  q_smooth_eps: 0.01
+  q_ood_eps: 0.01
+  q_ood_reg: 0.1
+  q_ood_uncertainty_reg: 1.0
+  q_ood_uncertainty_reg_min: 0.1
+  q_ood_uncertainty_decay: 5.0e-07
+train: {updates: 3000000}

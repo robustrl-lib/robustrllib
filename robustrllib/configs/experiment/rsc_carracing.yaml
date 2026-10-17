@@ -1,0 +1,24 @@
+# RSC-SAC on CarRacing-v2 from pixels; the intervention acts on the critic's image encoding.
+name: rsc_carracing
+algorithm: robustrllib/configs/algorithm/rsc.yaml
+task: robustrllib/configs/task/carracing.yaml
+eval: robustrllib/configs/eval/part1_carracing.yaml
+hparams:
+  actor_lr: 1.0e-4
+  critic_lr: 1.0e-4
+  lr_final: 3.0e-5
+  buffer_size: 500000
+  train_freq: 8
+  gradient_steps: 8
+  target_entropy: -2.0
+  use_sde: true
+  sde_sample_freq: 8
+  log_std_init: -3.0
+  warmup: 400000
+  ramp: 100000
+  cooldown: 200000
+  mix: 0.05
+  selected_fraction: 0.25
+  reference_size: null
+  dynamics: {hidden: 64, layers: 1, width: 16, mask_init: 3.0, sparse_weight: 0.01, sparse_norm: 0.1}
+train: {steps: 1000000}

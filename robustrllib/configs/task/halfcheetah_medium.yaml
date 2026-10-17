@@ -1,0 +1,5 @@
+# MuJoCo locomotion, offline methods: HalfCheetah-v5 with the Minari medium dataset.
+name: halfcheetah_medium
+env_id: HalfCheetah-v5
+dataset: mujoco/halfcheetah/medium-v0
+score: {min: -280.18, max: 12135.0}   # normalization anchors: D4RL v2 random / expert

@@ -1,0 +1,11 @@
+# Part 2, semantic channel: DoorCausal trained on the hhl binding (door rotated left ->
+# latch high), evaluated on hhl and on the inverted binding hhr.
+episodes: 20
+seed: 10000
+grid:
+- name: hhl
+  env_id: DoorCausalHHL-v0
+  shifts: []
+- name: hhr
+  env_id: DoorCausalHHR-v0
+  shifts: []

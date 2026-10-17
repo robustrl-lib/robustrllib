@@ -1,0 +1,6 @@
+# SAC on PointMaze_UMaze-v3 (Part 1), sparse continuing task, standard replay without HER.
+name: sac_pointmaze
+algorithm: robustrllib/configs/algorithm/sac.yaml
+task: robustrllib/configs/task/pointmaze_umaze.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_umaze.yaml
+train: {steps: 1000000}

@@ -1,0 +1,6 @@
+# RSC-SAC on HalfCheetah-v5.
+name: rsc_halfcheetah
+algorithm: robustrllib/configs/algorithm/rsc.yaml
+task: robustrllib/configs/task/halfcheetah.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+train: {steps: 1000000}

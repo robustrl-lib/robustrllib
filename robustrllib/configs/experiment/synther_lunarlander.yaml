@@ -1,0 +1,6 @@
+# SynthER on LunarLanderContinuous-v3 (medium).
+name: synther_lunarlander
+algorithm: robustrllib/configs/algorithm/synther.yaml
+task: robustrllib/configs/task/lunarlander_medium.yaml
+eval: robustrllib/configs/eval/part1_lunarlander.yaml
+train: {updates: 1000000}

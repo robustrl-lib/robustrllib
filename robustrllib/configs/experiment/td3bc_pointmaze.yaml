@@ -1,0 +1,6 @@
+# TD3+BC on PointMaze_Open-v3 (D4RL open).
+name: td3bc_pointmaze
+algorithm: robustrllib/configs/algorithm/td3bc.yaml
+task: robustrllib/configs/task/pointmaze_open.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_open.yaml
+train: {updates: 1000000}

@@ -1,0 +1,6 @@
+# PPO on PointMaze_UMaze-v3 (Part 1), sparse continuing task.
+name: ppo_pointmaze
+algorithm: robustrllib/configs/algorithm/ppo.yaml
+task: robustrllib/configs/task/pointmaze_umaze.yaml
+eval: robustrllib/configs/eval/part1_pointmaze_umaze.yaml
+train: {steps: 2000000}

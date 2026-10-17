@@ -1,0 +1,116 @@
+# Part 1 (library-wide grid), CarRacing-v2: the rungs of the paper's evaluation-grid table,
+# grouped by severity quartile Q1-Q4 (displacement from nominal).
+# CarRacing reads these as constructor arguments, so each condition sets env_kwargs.
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []
+- name: morphology_0.8
+  axis: morphology
+  quartile: 1
+  severity: 0.8
+  shifts: []
+  env_kwargs: {morphology_scale: 0.8}
+- name: morphology_1.2
+  axis: morphology
+  quartile: 1
+  severity: 1.2
+  shifts: []
+  env_kwargs: {morphology_scale: 1.2}
+- name: morphology_0.6
+  axis: morphology
+  quartile: 2
+  severity: 0.6
+  shifts: []
+  env_kwargs: {morphology_scale: 0.6}
+- name: morphology_1.4
+  axis: morphology
+  quartile: 3
+  severity: 1.4
+  shifts: []
+  env_kwargs: {morphology_scale: 1.4}
+- name: morphology_1.6
+  axis: morphology
+  quartile: 4
+  severity: 1.6
+  shifts: []
+  env_kwargs: {morphology_scale: 1.6}
+- name: morphology_1.8
+  axis: morphology
+  quartile: 4
+  severity: 1.8
+  shifts: []
+  env_kwargs: {morphology_scale: 1.8}
+- name: gear_0.8
+  axis: gear
+  quartile: 1
+  severity: 0.8
+  shifts: []
+  env_kwargs: {engine_power_scale: 0.8}
+- name: gear_1.2
+  axis: gear
+  quartile: 1
+  severity: 1.2
+  shifts: []
+  env_kwargs: {engine_power_scale: 1.2}
+- name: gear_0.6
+  axis: gear
+  quartile: 2
+  severity: 0.6
+  shifts: []
+  env_kwargs: {engine_power_scale: 0.6}
+- name: gear_1.4
+  axis: gear
+  quartile: 3
+  severity: 1.4
+  shifts: []
+  env_kwargs: {engine_power_scale: 1.4}
+- name: gear_0.4
+  axis: gear
+  quartile: 4
+  severity: 0.4
+  shifts: []
+  env_kwargs: {engine_power_scale: 0.4}
+- name: gear_1.6
+  axis: gear
+  quartile: 4
+  severity: 1.6
+  shifts: []
+  env_kwargs: {engine_power_scale: 1.6}
+- name: friction_0.9
+  axis: friction
+  quartile: 1
+  severity: 0.9
+  shifts: []
+  env_kwargs: {friction_scale: 0.9}
+- name: friction_1.1
+  axis: friction
+  quartile: 1
+  severity: 1.1
+  shifts: []
+  env_kwargs: {friction_scale: 1.1}
+- name: friction_1.2
+  axis: friction
+  quartile: 2
+  severity: 1.2
+  shifts: []
+  env_kwargs: {friction_scale: 1.2}
+- name: friction_0.8
+  axis: friction
+  quartile: 3
+  severity: 0.8
+  shifts: []
+  env_kwargs: {friction_scale: 0.8}
+- name: friction_0.6
+  axis: friction
+  quartile: 4
+  severity: 0.6
+  shifts: []
+  env_kwargs: {friction_scale: 0.6}
+- name: friction_0.7
+  axis: friction
+  quartile: 4
+  severity: 0.7
+  shifts: []
+  env_kwargs: {friction_scale: 0.7}

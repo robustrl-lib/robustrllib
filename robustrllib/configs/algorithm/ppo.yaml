@@ -1,0 +1,18 @@
+# PPO (Stable-Baselines3): the paper's PPO table, which coincides with the SB3 defaults.
+# Policy and value networks: two hidden layers of 64 (MlpPolicy); NatureCNN for pixels.
+name: ppo
+entry: baselines/sb3/train.py
+class: baselines.sb3.policy:SB3Policy
+checkpoint: last
+hparams:
+  learning_rate: 3.0e-4
+  n_steps: 2048          # rollout length
+  batch_size: 64         # minibatch size
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  normalize: false       # running observation and reward normalisation; on for MuJoCo, Pusher, DoorCausal

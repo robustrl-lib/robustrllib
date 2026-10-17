@@ -1,0 +1,30 @@
+# FWM: IQL whose critic also regresses h-step returns of a flow-matching world model; the paper's FWM table.
+name: fwm
+entry: baselines/fwm/train.py
+class: baselines.iql.policy:IQLPolicy
+checkpoint: last
+hparams:
+  expectile: 0.7       # IQL backbone: the paper's IQL table
+  beta: 3.0
+  adv_clip: 100.0
+  lr: 3.0e-4
+  hidden: 256
+  dropout: 0.0
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 256
+  robust_every: 10          # h-step critic update every n-th update
+  h: 5                      # horizon of the h-step targets
+  window: 12                # flow-model window
+  fm_n_steps: 5             # ODE steps when sampling
+  fm_ode_solver: midpoint
+  fm_guidance_weight: 2.0
+  warm_start_updates: 0     # plain IQL updates before the mechanism starts
+  flow_dir: null            # existing flow models (model<k>.pt); trained on the run's data when null
+  flow:                     # flow-model training
+    n_feat: 128             # U-Net features
+    lr: 1.0e-4
+    batch_size: 256
+    drop_prob: 0.2          # conditioning dropout
+    epochs: 5000
+    batches_per_epoch: 40

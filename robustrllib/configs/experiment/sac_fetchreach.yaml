@@ -1,0 +1,6 @@
+# SAC on FetchReachDense-v3 (Part 1), gripper-relative goal, standard replay without HER.
+name: sac_fetchreach
+algorithm: robustrllib/configs/algorithm/sac.yaml
+task: robustrllib/configs/task/fetchreach.yaml
+eval: robustrllib/configs/eval/part1_fetchreach.yaml
+train: {steps: 1000000}

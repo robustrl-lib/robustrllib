@@ -1,0 +1,26 @@
+# RARL (Pinto et al., 2017) with TRPO players (sb3-contrib): a protagonist and an adversary that
+# perturbs its environment, trained in alternating update blocks on a zero-sum reward.
+name: rarl_trpo
+entry: baselines/rarl/train.py
+class: baselines.rarl.policy:RARLPolicy
+checkpoint: last
+hparams:
+  base: trpo
+  adversary: null          # per task: {kind: body_force | action_nudge | hull_force, ...}, see baselines/rarl/game.py
+  update_ratio: [1, 1]     # protagonist : adversary update blocks per cycle
+  warmup: 0                # protagonist steps before the adversary acts
+  zero_force_prob: 0.0     # p0: probability that a protagonist step runs without the adversary
+  n_envs: 1                # environments per player
+  normalize: false         # running observation and reward normalisation for the protagonist
+  learning_rate: 1.0e-3    # critic learning rate
+  adversary_lr: null       # null: the protagonist's learning rate
+  n_steps: 2048
+  batch_size: 128          # critic minibatch
+  gamma: 0.99
+  gae_lambda: 0.95
+  target_kl: 0.01
+  cg_max_steps: 15
+  cg_damping: 0.1
+  n_critic_updates: 10
+  log_std_floor: null      # lower bound on the Gaussian policy's log standard deviation
+  policy_kwargs: {}

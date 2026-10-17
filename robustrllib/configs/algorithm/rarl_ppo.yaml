@@ -1,0 +1,26 @@
+# RARL (Pinto et al., 2017) with PPO players: a protagonist and an adversary that perturbs
+# its environment, trained in alternating update blocks on a zero-sum reward.
+name: rarl_ppo
+entry: baselines/rarl/train.py
+class: baselines.rarl.policy:RARLPolicy
+checkpoint: last
+hparams:
+  base: ppo
+  adversary: null          # per task: {kind: body_force | action_nudge | hull_force, ...}, see baselines/rarl/game.py
+  update_ratio: [1, 1]     # protagonist : adversary update blocks per cycle
+  warmup: 0                # protagonist steps before the adversary acts
+  zero_force_prob: 0.0     # p0: probability that a protagonist step runs without the adversary
+  n_envs: 1                # environments per player
+  normalize: false         # running observation and reward normalisation for the protagonist
+  learning_rate: 3.0e-4
+  adversary_lr: null       # null: the protagonist's learning rate
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  policy_kwargs: {}

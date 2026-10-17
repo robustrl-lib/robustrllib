@@ -1,0 +1,7 @@
+# Goal-conditioned navigation in the open arena, offline methods (online methods use the U-maze).
+name: pointmaze_open
+env_id: PointMaze_Open-v3
+env_kwargs: {reward_type: sparse, continuing_task: true, reset_target: true}   # a new goal after every success, as in the dataset
+observation: {keys: [observation, desired_goal]}                             # 6-D: position, velocity, goal
+dataset: D4RL/pointmaze/open-v2
+score: {min: 0.0, max: 3.28}   # normalization anchors: no goal / IQL nominal; return = goals reached in 300 steps

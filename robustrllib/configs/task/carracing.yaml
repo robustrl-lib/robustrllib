@@ -1,0 +1,7 @@
+# Driving from pixels, continuous actions (SAC-based methods); grayscale frames keep the
+# replay buffer small.
+name: carracing
+env_id: CarRacing-v2
+env_kwargs: {continuous: true, domain_randomize: false}
+observation: {frames: 4, gray: true}                                         # 4 grayscale frames, channel first
+score: {min: -30.44, max: 900.0}   # normalization anchors: random policy / solved threshold

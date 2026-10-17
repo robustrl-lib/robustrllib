@@ -1,0 +1,16 @@
+# RORL on Hopper-v5 (Minari medium).
+name: rorl_hopper
+algorithm: robustrllib/configs/algorithm/rorl.yaml
+task: robustrllib/configs/task/hopper_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  num_samples: 20
+  policy_smooth_eps: 0.005
+  policy_smooth_reg: 0.1
+  q_smooth_eps: 0.005
+  q_ood_eps: 0.01
+  q_ood_reg: 0.5
+  q_ood_uncertainty_reg: 2.0
+  q_ood_uncertainty_reg_min: 0.1
+  q_ood_uncertainty_decay: 1.0e-06
+train: {updates: 3000000}

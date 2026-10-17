@@ -1,0 +1,18 @@
+# DR-SAC: SAC trained under domain randomisation. The training distribution
+# (`randomize`, `resample`) and the task's SAC values are set per experiment card.
+name: dr_sac
+entry: baselines/dr_sac/train.py
+class: baselines.sb3.policy:SB3Policy
+checkpoint: last
+hparams:
+  learning_rate: 3.0e-4
+  buffer_size: 1000000
+  learning_starts: 10000
+  batch_size: 256
+  tau: 0.005
+  gamma: 0.99
+  train_freq: 1
+  gradient_steps: 1
+  ent_coef: auto
+  target_entropy: auto
+  randomize: []          # dynamics shifts with mode uniform, redrawn at every reset

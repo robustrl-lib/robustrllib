@@ -1,0 +1,10 @@
+# RAMBO on Hopper-v5 (Minari medium).
+name: rambo_hopper
+algorithm: robustrllib/configs/algorithm/rambo.yaml
+task: robustrllib/configs/task/hopper_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  adversary_weight: 0.0003
+  rollout_length: 5
+  bc_reg_weight: 1.0
+train: {updates: 2000000}

@@ -1,0 +1,7 @@
+# ATLA-SA-PPO on robosuite DoorCausal, trained on the hhl binding (Part 2 semantic channel);
+# hyperparameters are the Hopper configuration.
+name: atla_sa_doorcausal
+algorithm: robustrllib/configs/algorithm/atla_sa.yaml
+task: robustrllib/configs/task/doorcausal.yaml
+eval: robustrllib/configs/eval/part2_doorcausal.yaml
+train: {steps: 4999168}   # 2441 iterations x 2048 steps

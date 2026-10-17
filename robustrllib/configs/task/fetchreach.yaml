@@ -1,0 +1,5 @@
+# Goal-conditioned reaching; the goal is given relative to the gripper.
+name: fetchreach
+env_id: FetchReachDense-v3
+observation: {keys: [observation, desired_goal], relative_goal: true}   # 13-D: 10 + gripper-relative goal
+score: {min: -8.42, max: 0.0}   # normalization anchors: random policy / reward maximum

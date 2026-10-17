@@ -1,0 +1,19 @@
+# SAC on CarRacing-v2 (Part 1): 4 stacked grayscale frames, continuous actions, gSDE
+# exploration with a pixel-sized replay buffer.
+name: sac_carracing
+algorithm: robustrllib/configs/algorithm/sac.yaml
+task: robustrllib/configs/task/carracing.yaml
+eval: robustrllib/configs/eval/part1_carracing.yaml
+hparams:
+  learning_rate: 1.0e-4
+  buffer_size: 200000
+  learning_starts: 10000
+  tau: 0.02
+  train_freq: 8
+  gradient_steps: 8
+  use_sde: true
+  sde_sample_freq: 8
+  use_sde_at_warmup: true
+  policy_kwargs: {net_arch: [256, 256], log_std_init: -3}  # NatureCNN + two hidden layers
+  target_entropy: auto  # -3 for the three continuous action dimensions
+train: {steps: 1000000}

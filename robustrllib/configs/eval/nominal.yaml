@@ -1,0 +1,6 @@
+# Nominal condition only: the evaluation of the training-time channels.
+episodes: 20
+seed: 10000
+grid:
+- name: nominal
+  shifts: []

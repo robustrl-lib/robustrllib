@@ -1,0 +1,23 @@
+# ATLA-SA-PPO on CarRacing-v2 from pixels, discrete actions: CNN policy (Stable-Baselines3 PPO)
+# with the SA regulariser, against a convolutional observation adversary.
+name: atla_sa_carracing
+algorithm: robustrllib/configs/algorithm/atla_sa.yaml
+task: robustrllib/configs/task/carracing_discrete.yaml
+eval: robustrllib/configs/eval/part1_carracing.yaml
+hparams:
+  robust_ppo_eps: 8.0           # pixel levels, 8/255 of the image range
+  robust_ppo_reg: 0.1
+  robust_ppo_pgd_steps: 2
+  ppo_lr_adam: 1.0e-4           # one optimiser for policy and value
+  val_lr: 1.0e-4
+  adv_ppo_lr_adam: 1.0e-4
+  adv_adversary_steps: 4
+  adv_batch_size: 256
+  history_length: -1            # feed-forward CNN policy
+  entropy_coeff: 0.0
+  n_envs: 8
+  t: 512                        # rollout steps per environment
+  batch_size: 128
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+train: {steps: 4999168}

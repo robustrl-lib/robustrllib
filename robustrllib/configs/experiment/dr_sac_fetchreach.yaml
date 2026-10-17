@@ -1,0 +1,22 @@
+# DR-SAC on FetchReachDense-v3 (Part 1): Cartesian gain and the arm-link offsets each drawn
+# from U(0.9, 1.1) per episode; gripper-relative goal, normalised observations, no HER.
+name: dr_sac_fetchreach
+algorithm: robustrllib/configs/algorithm/dr_sac.yaml
+task: robustrllib/configs/task/fetchreach.yaml
+eval: robustrllib/configs/eval/part1_fetchreach.yaml
+hparams:
+  learning_rate: 1.0e-3
+  gamma: 0.95
+  learning_starts: 1000
+  policy_kwargs: {net_arch: [64, 64]}
+  normalize: true
+  randomize:
+  - {target: dynamics, mode: uniform, params: {param: actuator_gear, index: all, low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: 'robot0:shoulder_lift_link', low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: 'robot0:upperarm_roll_link', low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: 'robot0:elbow_flex_link', low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: 'robot0:forearm_roll_link', low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: 'robot0:wrist_flex_link', low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: 'robot0:wrist_roll_link', low: 0.9, high: 1.1}}
+  - {target: dynamics, mode: uniform, params: {param: body_pos_xyz, index: 'robot0:gripper_link', low: 0.9, high: 1.1}}
+train: {steps: 1000000}

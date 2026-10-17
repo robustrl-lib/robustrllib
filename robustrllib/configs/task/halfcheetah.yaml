@@ -1,0 +1,4 @@
+# MuJoCo locomotion, online methods.
+name: halfcheetah
+env_id: HalfCheetah-v5
+score: {min: -280.18, max: 12135.0}   # normalization anchors: D4RL v2 random / expert

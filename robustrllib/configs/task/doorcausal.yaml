@@ -1,0 +1,5 @@
+# robosuite door whose latch height is bound to the door's rotation (hhl); the semantic
+# channel evaluates the inverted binding (hhr). No normalization anchor: scores are relative
+# to SAC on hhl.
+name: doorcausal
+env_id: DoorCausalHHL-v0

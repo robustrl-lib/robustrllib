@@ -1,0 +1,10 @@
+# RARL-TRPO on Walker2d-v5: the adversary pushes both feet in the sagittal plane.
+name: rarl_trpo_walker2d
+algorithm: robustrllib/configs/algorithm/rarl_trpo.yaml
+task: robustrllib/configs/task/walker2d.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  adversary: {kind: body_force, bodies: [foot, foot_left], axes: [x, z], force: 5.0}
+  n_envs: 4
+  normalize: true
+train: {steps: 2000000}

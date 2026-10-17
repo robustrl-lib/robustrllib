@@ -1,0 +1,6 @@
+# PPO on FetchReachDense-v3 (Part 1), gripper-relative goal, no HER.
+name: ppo_fetchreach
+algorithm: robustrllib/configs/algorithm/ppo.yaml
+task: robustrllib/configs/task/fetchreach.yaml
+eval: robustrllib/configs/eval/part1_fetchreach.yaml
+train: {steps: 2000000}

@@ -1,0 +1,25 @@
+# RSC-IQL: IQL on batches whose non-causal state features are re-sampled; the paper's RSC-IQL table.
+name: rsc_iql
+entry: baselines/rsc_iql/train.py
+class: baselines.iql.policy:IQLPolicy
+checkpoint: last
+hparams:
+  expectile: 0.7       # IQL backbone: the paper's IQL table
+  beta: 3.0
+  adv_clip: 100.0
+  lr: 3.0e-4
+  hidden: 256
+  dropout: 0.0
+  gamma: 0.99
+  tau: 0.005
+  batch_size: 256
+  rewrite_ratio: 0.25       # rewritten fraction of a batch
+  prob_d_threshold: 0.7     # only dimensions with normalised importance below this are rewritten
+  prob_d_scale: 0.3         # scale of the per-dimension rewrite probability
+  robust_every: 50          # rewritten batch every n-th update
+  mask_path: null           # an existing causal mask; fitted on the run's data when null
+  mask:                     # causal-mask fit
+    sparse_weight: 0.5
+    epochs: 50
+    lr: 1.0e-4
+    batch_size: 512

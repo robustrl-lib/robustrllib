@@ -1,0 +1,11 @@
+# MOPO on HalfCheetah-v5 (Minari medium).
+name: mopo_halfcheetah
+algorithm: robustrllib/configs/algorithm/mopo.yaml
+task: robustrllib/configs/task/halfcheetah_medium.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  rollout_length: 5
+  penalty_coeff: 1.0
+  penalty_type: max_aleatoric
+  real_ratio: 0.05
+train: {updates: 1000000}

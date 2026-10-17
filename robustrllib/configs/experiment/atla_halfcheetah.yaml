@@ -1,0 +1,17 @@
+# ATLA-PPO on HalfCheetah-v5.
+name: atla_halfcheetah
+algorithm: robustrllib/configs/algorithm/atla.yaml
+task: robustrllib/configs/task/halfcheetah.yaml
+eval: robustrllib/configs/eval/part1_mujoco.yaml
+hparams:
+  robust_ppo_eps: 0.15
+  ppo_lr_adam: 1.0e-4
+  val_lr: 1.0e-3
+  adv_ppo_lr_adam: 3.0e-3
+  adv_val_lr: 3.0e-4
+  adv_adversary_steps: 1
+  initial_std: 0.5
+  entropy_coeff: 3.0e-4
+  adv_entropy_coeff: 1.0e-4
+  value_clipping: true
+train: {steps: 4999168}   # 2441 iterations x 2048 steps
