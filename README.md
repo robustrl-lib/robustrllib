@@ -39,80 +39,17 @@ documentation of this repository; this file gives the overview, the layout and t
 
 ## 📑 Contents
 
-- [Task demos](#-task-demos)
 - [How it works](#-how-it-works)
 - [Algorithms](#-algorithms)
 - [Shift toolbox](#-shift-toolbox)
 - [Layout](#-layout)
 - [Install](#-install)
 - [Shifts, training and evaluation](#-shifts-training-and-evaluation)
+- [Task support](#-task-support)
 - [Tutorial](#-tutorial)
 - [Licence](#-licence)
 
 ---
-
-## 🎬 Task demos
-
-Click a clip to open the full video. More on the [project page](https://robustrl-lib.github.io/).
-
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/hopper.mp4"><img src="assets/demos/hopper.gif" width="100%" alt="Hopper-v5"></a><br>
-      <sub><b>Hopper-v5</b><br>Locomotion</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/walker2d.mp4"><img src="assets/demos/walker2d.gif" width="100%" alt="Walker2d-v5"></a><br>
-      <sub><b>Walker2d-v5</b><br>Locomotion</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/halfcheetah.mp4"><img src="assets/demos/halfcheetah.gif" width="100%" alt="HalfCheetah-v5"></a><br>
-      <sub><b>HalfCheetah-v5</b><br>Locomotion</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/pusher.mp4"><img src="assets/demos/pusher.gif" width="100%" alt="Pusher-v5s"></a><br>
-      <sub><b>Pusher-v5s</b><br>Manipulation</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/door.mp4"><img src="assets/demos/door.gif" width="100%" alt="AdroitHandDoor-v1"></a><br>
-      <sub><b>AdroitHandDoor-v1</b><br>Manipulation</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/fetchreach.mp4"><img src="assets/demos/fetchreach.gif" width="100%" alt="FetchReachDense-v3"></a><br>
-      <sub><b>FetchReachDense-v3</b><br>Manipulation</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/pointmaze.mp4"><img src="assets/demos/pointmaze.gif" width="100%" alt="PointMaze_UMaze-v3"></a><br>
-      <sub><b>PointMaze_UMaze-v3</b><br>Navigation</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/lunarlander.mp4"><img src="assets/demos/lunarlander.gif" width="100%" alt="LunarLanderContinuous-v3"></a><br>
-      <sub><b>LunarLanderContinuous-v3</b><br>Vehicle control</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/carracing.mp4"><img src="assets/demos/carracing.gif" width="100%" alt="CarRacing-v2"></a><br>
-      <sub><b>CarRacing-v2</b><br>Vehicle control</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/g1.mp4"><img src="assets/demos/g1.gif" width="100%" alt="Unitree G1 locomotion"></a><br>
-      <sub><b>Unitree G1 locomotion</b><br>Humanoid · Isaac Lab</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/drawer.mp4"><img src="assets/demos/drawer.gif" width="100%" alt="Drawer opening"></a><br>
-      <sub><b>Drawer opening</b><br>Manipulation · Isaac Lab</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://robustrl-lib.github.io/assets/tasks/vla.mp4"><img src="assets/demos/vla.gif" width="100%" alt="Insert mouse battery (π0.5)"></a><br>
-      <sub><b>Insert mouse battery (π0.5)</b><br>Vision–language–action</sub>
-    </td>
-  </tr>
-</table>
 
 ## 🧩 How it works
 
@@ -240,6 +177,83 @@ grid:
 python baselines/evaluate.py --run runs/sac_walker2d/seed0 --eval my_eval.yaml
 # writes runs/sac_walker2d/seed0/eval/my_eval.json: the return and the normalized score of each condition
 ```
+
+## 🗺️ Task support
+
+RobustRLlib covers **six task families with 14 tasks**, simulated in MuJoCo, Box2D, robosuite and Isaac Lab, plus a
+vision–language–action policy evaluated on bimanual arms. Every task offers the dynamic, observation, action and latency
+shifts, every task but the VLA one the reward/cost shift, and DoorCausal, the two Isaac Lab tasks and the VLA task the
+semantic shift.
+
+| Family | Tasks | Simulator |
+|---|---|---|
+| Locomotion | Hopper-v5 · Walker2d-v5 · HalfCheetah-v5 | MuJoCo |
+| Manipulation | Pusher-v5s · FetchReachDense-v3 · AdroitHandDoor-v1 · DoorCausal · Drawer opening | MuJoCo · robosuite · Isaac Lab |
+| Navigation | PointMaze_UMaze-v3 · PointMaze_Open-v3 | MuJoCo |
+| Vehicle control | LunarLanderContinuous-v3 · CarRacing-v2 | Box2D |
+| Humanoid | Unitree G1 locomotion | Isaac Lab |
+| Vision–language–action | Insert mouse battery (π0.5) | bimanual arms (evaluation) |
+
+Click a clip to open the full video. More on the [project page](https://robustrl-lib.github.io/).
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/hopper.mp4"><img src="assets/demos/hopper.gif" width="100%" alt="Hopper-v5"></a><br>
+      <sub><b>Hopper-v5</b><br>Locomotion</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/walker2d.mp4"><img src="assets/demos/walker2d.gif" width="100%" alt="Walker2d-v5"></a><br>
+      <sub><b>Walker2d-v5</b><br>Locomotion</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/halfcheetah.mp4"><img src="assets/demos/halfcheetah.gif" width="100%" alt="HalfCheetah-v5"></a><br>
+      <sub><b>HalfCheetah-v5</b><br>Locomotion</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/pusher.mp4"><img src="assets/demos/pusher.gif" width="100%" alt="Pusher-v5s"></a><br>
+      <sub><b>Pusher-v5s</b><br>Manipulation</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/door.mp4"><img src="assets/demos/door.gif" width="100%" alt="AdroitHandDoor-v1"></a><br>
+      <sub><b>AdroitHandDoor-v1</b><br>Manipulation</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/fetchreach.mp4"><img src="assets/demos/fetchreach.gif" width="100%" alt="FetchReachDense-v3"></a><br>
+      <sub><b>FetchReachDense-v3</b><br>Manipulation</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/pointmaze.mp4"><img src="assets/demos/pointmaze.gif" width="100%" alt="PointMaze_UMaze-v3"></a><br>
+      <sub><b>PointMaze_UMaze-v3</b><br>Navigation</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/lunarlander.mp4"><img src="assets/demos/lunarlander.gif" width="100%" alt="LunarLanderContinuous-v3"></a><br>
+      <sub><b>LunarLanderContinuous-v3</b><br>Vehicle control</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/carracing.mp4"><img src="assets/demos/carracing.gif" width="100%" alt="CarRacing-v2"></a><br>
+      <sub><b>CarRacing-v2</b><br>Vehicle control</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/g1.mp4"><img src="assets/demos/g1.gif" width="100%" alt="Unitree G1 locomotion"></a><br>
+      <sub><b>Unitree G1 locomotion</b><br>Humanoid · Isaac Lab</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/drawer.mp4"><img src="assets/demos/drawer.gif" width="100%" alt="Drawer opening"></a><br>
+      <sub><b>Drawer opening</b><br>Manipulation · Isaac Lab</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://robustrl-lib.github.io/assets/tasks/vla.mp4"><img src="assets/demos/vla.gif" width="100%" alt="Insert mouse battery (π0.5)"></a><br>
+      <sub><b>Insert mouse battery (π0.5)</b><br>Vision–language–action</sub>
+    </td>
+  </tr>
+</table>
 
 ## 📖 Tutorial
 
