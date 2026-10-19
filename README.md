@@ -21,15 +21,15 @@
   <img src="assets/overview.png" alt="Overview of RobustRLlib" width="92%">
 </p>
 
-RobustRLlib is a unified library and benchmark for robust reinforcement learning: sixteen robust
-online, offline and safe methods behind one interface, six standard methods for reference, and a
+RobustRLlib is a unified library and benchmark for robust reinforcement learning: seventeen robust
+online, offline and safe algorithms behind one interface, six standard methods for reference, and a
 shift toolbox that declares a distribution shift as data and stacks any number of them on an
 environment. The [tutorial](https://robustrl-lib.github.io/docs/) on the project page is the
 documentation of this repository; this file gives the overview, the layout and the first commands.
 
 | | |
 |---|---|
-| **22 algorithms** | 16 robust methods (online, offline and safe) and 6 standard references |
+| **23 algorithms** | 17 robust algorithms (online, offline and safe; 15 methods, RARL and DR in two variants each) and 6 standard references |
 | **6 shift sources** | dynamic, observation, action, reward/cost, latency, semantic |
 | **5 shift modes** | stochastic, adversarial, parametric, non-stationary, composition |
 | **6 task families** | locomotion, manipulation, navigation, vehicle control, humanoid, vision–language–action |
@@ -68,7 +68,7 @@ environment it collects from, or the data it learns from.
 |---|---|---|
 | Standard | reference algorithms | IQL, TD3+BC, MOPO, SynthER (offline) · PPO, SAC (online) |
 | Robust online | learner-centric | ATLA, ATLA-SA, RSC |
-| | environment-centric | RARL (PPO, TRPO), DR |
+| | environment-centric | RARL (PPO, TRPO), DR (SAC, PPO) |
 | Robust offline | learner-centric | RFQI, RORL, ATLA-IQL |
 | | data-centric | RSC-IQL, RAMBO |
 | | data-centric (generative model) | ROMB, FWM, PLR-PVL |
