@@ -79,10 +79,24 @@ One page per method (mechanism, configuration cards, results by task) is in the
 
 ## 🌪️ Shift toolbox
 
-A shift has a **source**, which says what is perturbed, and a **mode**, which says how the intervention
-is built: stochastic, adversarial, parametric, non-stationary through a schedule, or a composition of
-several shifts. A shifted environment is a base task with one wrapper per shift; the task code is not
-modified. See [shift sources and modes](https://robustrl-lib.github.io/docs/shifts/).
+A shift is one **perturbation configuration**, the tuple (source, factor, mode, magnitude, resampling rule,
+optional schedule, seed): the source says where the intervention enters the agent–environment loop, the factor
+what it perturbs, the mode how it is built, the magnitude how far it departs from nominal, the resampling rule and
+the schedule how it evolves within an episode, and the seed makes its draws reproducible. A shifted environment is
+a base task with one wrapper per configuration; the task code is not modified. `ShiftSpec` writes the seven fields:
+
+| Field | In `ShiftSpec` | Gravity × 1.3 on Hopper |
+|---|---|---|
+| source | `target`: dynamics, observation, action, reward/cost, latency, semantic (`appearance`) | `"dynamics"` |
+| factor | `params`: `param` and `index`, `body`, `geoms`, `keys` or `info_key`; otherwise the whole signal | `"param": "gravity"` |
+| mode | `mode`: stochastic, adversarial or parametric mode names such as `gauss`, `adversarial`, `scale` | `"scale"` |
+| magnitude | `params`: the value parameters, such as `factor`, `sigma`, `eps`, `steps` | `"factor": 1.3` |
+| resampling rule | set by the mode name: per step, per episode or fixed; `resample: "step"` on latency `buffer` and `interp` | fixed |
+| optional schedule | `schedule`: non-stationary | `None` |
+| seed | `seed`, else the seed of `make_robust` | `None` |
+
+A list of configurations is a composition, stacked in list order. See
+[shift sources and modes](https://robustrl-lib.github.io/docs/shifts/) for every source, mode name and resampling rule.
 
 ## 🗂️ Layout
 
@@ -108,8 +122,8 @@ generated once with `python baselines/offline/lunarlander.py --out datasets/luna
 
 ## 🧪 Shifts, training and evaluation
 
-**1. Shifts on a task.** A shift is a `ShiftSpec(target, mode, params)`; a shifted environment is a task with a list of
-them, stacked in list order. Targets are `dynamics`, `observation`, `action`, `reward`, `cost`, `latency`, `transition`
+**1. Shifts on a task.** A shift is a `ShiftSpec(target, mode, params, schedule, seed)`, one perturbation configuration;
+a shifted environment is a task with a list of them, stacked in list order. Targets are `dynamics`, `observation`, `action`, `reward`, `cost`, `latency`, `transition`
 and `appearance`; the modes for each are listed in `robustrllib/spec.py`.
 
 ```python
@@ -154,8 +168,8 @@ python baselines/train.py -c robustrllib/configs/experiment/ppo_hopper.yaml --se
 python baselines/train.py -c robustrllib/configs/experiment/ppo_hopper.yaml --seed 0 --set train.steps=200000
 ```
 
-**3. Evaluate under your own shifts.** List the conditions in a card; each condition is a list of shifts, and every
-condition is scored on the same episodes.
+**3. Evaluate under your own shifts.** List the conditions in a card; each condition is a list of perturbation
+configurations, and every condition is scored on the same episodes.
 
 ```yaml
 # my_eval.yaml

@@ -3,11 +3,11 @@
 A single π0.5 model is fine-tuned on the expert demonstrations of the bimanual
 *insert-mouse-battery* task of the RSS 2026 post-training challenge, then
 evaluated by joint-space tracking against a recorded demonstration under eight
-shift axes from five shift sources.
+shift factors from five shift sources.
 
 | File | What it does |
 |---|---|
-| `ood_eval.py` | the evaluation: the shift table `AXES`, the shift operators, the closed-loop tracking windows, the metrics and the retention per rung |
+| `ood_eval.py` | the evaluation: the shift table `AXES`, the shift operators, the closed-loop tracking windows, the metrics and the retention per shift level |
 | `make_bundle.py` | builds the evaluation bundle (recorded commands, joint states and camera frames) from one dataset episode |
 | `pi05_policy.py` | policy class for the policy_deployment WebSocket server that serves an openpi checkpoint |
 | `dose.py` | size of each input-side shift, relative to the signal it corrupts |
@@ -135,27 +135,27 @@ the windows. The camera frames are the recorded ones, so image shifts change
 what the policy sees and the other shifts change what its actions do.
 
 The defaults are the paper's protocol (action horizon 50, four chunks, 60 Hz,
-prompt "Insert the battery into the mouse.", noise seed 10000, all eight axes
-plus nominal). `--axes` restricts the run to some axes. `--replay` executes the
+prompt "Insert the battery into the mouse.", noise seed 10000, all eight shift
+factors plus nominal). `--axes` restricts the run to some factors. `--replay` executes the
 recorded actions instead of querying a server, which checks the scene, the
 shifts and the metrics without a policy.
 
 The output holds, per condition, `track_rmse_mean/std`, `end_l2_mean/std`
 (distance to the recorded joint state at the window end) and
-`chunk_rmse_mean` (predicted against recorded chunk), and, per axis and rung,
-`track_rmse` (mean over the rung's settings) and
-`retention = nominal track_rmse / rung track_rmse`, the quantity the paper
-plots against the rung's place in its ladder.
+`chunk_rmse_mean` (predicted against recorded chunk), and, per factor and shift level,
+`track_rmse` (mean over the level's settings) and
+`retention = nominal track_rmse / level track_rmse`, the quantity the paper
+plots against the shift level.
 
-## Shift axes
+## Shift factors
 
-Defined once, in `AXES` of `ood_eval.py`. Each axis has its own ladder, ordered
-outward from nominal; rungs index severity within an axis, not across axes.
-Input-side axes have four rungs (Q1–Q4) of one setting each. Dynamics axes
-have three rungs (near, far, extreme), each a group of four settings scored by
+Defined once, in `AXES` of `ood_eval.py`. Each factor has its own ladder of shift levels, ordered
+outward from nominal; a level indexes the magnitude within a factor, not across factors.
+Input-side factors have four levels (Q1–Q4) of one setting each. Dynamics factors
+have three levels (near, far, extreme), each a group of four settings scored by
 their mean `track_rmse`.
 
-| Source | Axis (`--axes`) | Applied to | Unit | Nominal | Rungs, nearest → farthest |
+| Source | Factor (`--axes`) | Applied to | Unit | Nominal | Shift levels, nearest → farthest |
 |---|---|---|---|---|---|
 | latency | execution delay (`latency`) | executed chunk: the previous command is held for *d* steps and the chunk runs *d* steps late | control steps at 60 Hz | 0 | 2, **5**, 10, 20 |
 | action | command noise (`act_noise`) | arm joint commands, every step | Gaussian σ, rad | 0 | 0.01, **0.02**, 0.05, 0.10 |
@@ -166,13 +166,13 @@ their mean `track_rmse`.
 | dynamics | joint damping (`damping`) | every joint's damping | × | 1 | {2, 3, 4, 5}, {8, 10, 15, 20}, {50, 100, 200, 500} |
 | dynamics | dry friction (`frictionloss`) | every joint's MuJoCo `frictionloss` | + | 0 | {0.25, 0.5, 0.75, 1.0}, {1.5, 2, 3, 4}, {8, 16, 32, 64} |
 
-Bold rungs are the operating point of the real platform, read from its
+Bold levels are the operating point of the real platform, read from its
 demonstration logs: 83 ms of command-to-execution lag (5 steps at 60 Hz) and
 0.020 rad of joint tracking error. Noise never touches the grippers.
 
-`dose.py` measures the input-side rungs in the units of the signal they
-corrupt: the relative L2 change of the camera frames for the image axes,
-σ over the signal's standard deviation for the noise axes, and the RMS command
+`dose.py` measures the input-side levels in the units of the signal they
+corrupt: the relative L2 change of the camera frames for the image factors,
+σ over the signal's standard deviation for the noise factors, and the RMS command
 change over the delay, over the same standard deviation, for execution delay.
 
 ```bash

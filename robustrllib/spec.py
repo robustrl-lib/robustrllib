@@ -78,7 +78,16 @@ MODES = ("gauss", "shift", "uniform", "scale", "set", "adversarial",
 
 @dataclass
 class ShiftSpec:
-    """One perturbation. A benchmark experiment is an ordered list of these.
+    """One perturbation configuration. A benchmark experiment is an ordered list of these.
+
+    A perturbation configuration is the tuple (source, factor, mode, magnitude,
+    resampling rule, optional schedule, seed). The fields write it: ``target``
+    is the source; ``mode`` is the mode and also fixes the resampling rule (per
+    step, per episode or fixed; the latency modes ``buffer`` and ``interp`` take
+    ``params["resample"] = "step"``); ``params`` holds the factor (``param`` and
+    ``index``, ``body``, ``geoms``, ``keys`` or ``info_key``; otherwise the whole
+    signal) and the magnitude (``factor``, ``value``, ``sigma``, ``eps``,
+    ``steps`` ...); ``schedule`` is the optional schedule; ``seed`` the seed.
 
     The list order is the wrapper-stacking order, so it is explicit and
     reproducible (e.g. dynamics before observation noise).
